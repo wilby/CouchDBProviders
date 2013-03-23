@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CouchDBMembershipProvider", "CouchDBMembershipProvider\CouchDBMembershipProvider.csproj", "{EB126AED-B75C-416D-BA83-8A6EFD1FC687}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CouchDBMembershipProvider.Tests", "CouchDBMembershipProvider.Tests\CouchDBMembershipProvider.Tests.csproj", "{9E293183-3DF9-43D8-8B52-BBC2806DA812}"

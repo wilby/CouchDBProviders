@@ -12,8 +12,10 @@ namespace CouchDBMembershipProvider
         public const string DESIGN = "_design/";
         public const string AUTH_VIEW_ID = "auth";
         public const string AUTH_VIEW_NAME_BY_USERNAME = "byUserName";
-        public const string AUTH_VIEW_NAME_BY_Email_AND_APP_NAME = "byEmailAndAppName";
+        public const string AUTH_VIEW_NAME_BY_Email_AND_APPNAME = "byEmailAndAppName";
+        public const string AUTH_VIEW_NAME_BY_Email_AND_APPNAME_AND_ROWCOUNT = "byEmailAndAppNameAndRowCount";
         public const string AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME = "byUserNameAndAppName";
+        public const string AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME_EXISTS = "byUserNameAndAppNameExists";
 
         private CouchDatabase _DB;
 
@@ -33,8 +35,11 @@ namespace CouchDBMembershipProvider
             CouchDesignDocument authDD = new CouchDesignDocument("auth");
             authDD.Views.Add(AUTH_VIEW_NAME_BY_USERNAME, new CouchView(CouchViewFunctions.byUserNameMap));
             authDD.Views.Add(AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME, new CouchView(CouchViewFunctions.byUserNameAndAppName));
-            authDD.Views.Add(AUTH_VIEW_NAME_BY_Email_AND_APP_NAME, new CouchView(CouchViewFunctions.byEmailAndAppName));
+            authDD.Views.Add(AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME_EXISTS, new CouchView(CouchViewFunctions.byUserNameAndAppNameExists));
+            authDD.Views.Add(AUTH_VIEW_NAME_BY_Email_AND_APPNAME, new CouchView(CouchViewFunctions.byEmailAndAppName));
+            authDD.Views.Add(AUTH_VIEW_NAME_BY_Email_AND_APPNAME_AND_ROWCOUNT, new CouchView(CouchViewFunctions.byEmailAndAppNameAndRowCount));
             _DB.CreateDocument(authDD);
+            
         }
 
         public static ViewOptions ViewOptionsForDualKeyViewSelectSingle(string userNameOrEmail, string appName)

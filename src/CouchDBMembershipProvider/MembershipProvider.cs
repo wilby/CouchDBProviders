@@ -196,6 +196,20 @@ namespace CouchDBMembershipProvider
 
         public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status)
         {
+
+            var exists = false;
+            var existsView = _DB.GetView<string[], bool>(CouchViews.AUTH_VIEW_ID,
+                CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME_EXISTS,
+                CouchViews.ViewOptionsForDualKeyViewSelectSingle(username, ApplicationName));
+
+            if (existsView.Rows.Count() == 1)
+                exists = true;
+
+            if(exists) {
+                status = MembershipCreateStatus.DuplicateUserName;
+                return null;
+            }
+
             ValidatePasswordEventArgs args = new ValidatePasswordEventArgs(username, password, true);
             OnValidatingPassword(args);
             if (args.Cancel)
@@ -224,10 +238,10 @@ namespace CouchDBMembershipProvider
             if (RequiresUniqueEmail)
             {       
                 ViewResult<string[], User> existingUser = _DB.GetView<string[], User>(CouchViews.AUTH_VIEW_ID, 
-                CouchViews.AUTH_VIEW_NAME_BY_Email_AND_APP_NAME, 
+                CouchViews.AUTH_VIEW_NAME_BY_Email_AND_APPNAME, 
                 CouchViews.ViewOptionsForDualKeyViewSelectSingle(email, ApplicationName));                        
 
-                if (existingUser.TotalRows > 0)
+                if (existingUser.Rows.Count() > 0)
                 {
                     status = MembershipCreateStatus.DuplicateEmail;
                     return null;
@@ -252,7 +266,7 @@ namespace CouchDBMembershipProvider
                 CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME, 
                 CouchViews.ViewOptionsForDualKeyViewSelectSingle(username, ApplicationName));
 
-            if (userView.TotalRows == 0)            
+            if (userView.Rows.Count() == 0)            
                 return false;
             
             _DB.DeleteDocument(userView.Rows.FirstOrDefault().Value);
@@ -261,7 +275,27 @@ namespace CouchDBMembershipProvider
 
         public override MembershipUserCollection FindUsersByEmail(string emailToMatch, int pageIndex, int pageSize, out int totalRecords)
         {
-            throw new NotImplementedException();
+            ViewOptions vo = CouchViews.ViewOptionsForDualKeyViewSelectSingle(emailToMatch, ApplicationName);
+            vo.Limit = pageSize;
+            vo.IncludeDocs = true;
+            
+
+            var userView = _DB.GetView<string[], User>(CouchViews.AUTH_VIEW_ID,
+                CouchViews.AUTH_VIEW_NAME_BY_Email_AND_APPNAME,
+                vo);
+
+            MembershipUserCollection userColl = new MembershipUserCollection();
+            if(userView.Rows.Count() == 0) {
+                totalRecords = userView.Rows.Count();
+                return userColl;
+            }
+
+            foreach (var row in userView.Rows)
+            {
+                userColl.Add(UserToMembershipUser(row.Value));
+            }
+            totalRecords = userView.Rows.Count();
+            return userColl;
         }
 
         public override MembershipUserCollection FindUsersByName(string usernameToMatch, int pageIndex, int pageSize, out int totalRecords)
@@ -318,7 +352,7 @@ namespace CouchDBMembershipProvider
             var userView = _DB.GetView<string[], User>(CouchViews.AUTH_VIEW_ID, 
                 CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME,vo);
 
-            if(userView.TotalRows == 0)
+            if(userView.Rows.Count() == 0)
                 throw new ProviderException(string.Format("Cannot update the user {0}, they do not exist.", user.UserName));
 
             var dbUser = userView.Rows.FirstOrDefault().Value;
@@ -344,7 +378,7 @@ namespace CouchDBMembershipProvider
                 CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME,
                 CouchViews.ViewOptionsForDualKeyViewSelectSingle(username, ApplicationName));
 
-            if(userView.TotalRows == 0)
+            if(userView.Rows.Count() == 0)
                 return false;
 
             var user = userView.Rows.FirstOrDefault().Value;
@@ -387,9 +421,9 @@ namespace CouchDBMembershipProvider
             var viewOptions = new ViewOptions();
             viewOptions.Key = new KeyOptions(new string[] { username });
 
-            var result = db.GetView<string, User>("auth", "byUserName");
+            var result = db.GetView<string, User>("auth", "byUserName", viewOptions);
 
-            if (result.TotalRows > 1)
+            if (result.Rows.Count() > 1)
                 throw new ProviderException(string.Format("The user {0} has more than one record in the Membership database.", username));
 
             var user = result.Rows.FirstOrDefault().Value;

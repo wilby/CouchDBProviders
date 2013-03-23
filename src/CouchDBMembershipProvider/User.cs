@@ -6,6 +6,7 @@ using DreamSeat;
 
 namespace CouchDBMembershipProvider
 {
+    [Serializable]
     public class User : CouchDocument
     {        
         public string ApplicationName { get; set; }

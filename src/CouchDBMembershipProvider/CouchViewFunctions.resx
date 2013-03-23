@@ -120,14 +120,26 @@
   <data name="byEmailAndAppName" xml:space="preserve">
     <value>function(doc) { 
 	if(doc.type == 'CouchDBMembershipProvider.User') 
-		emit([doc.email, doc.applicationName], null) 
+		emit([doc.email, doc.applicationName], doc.id) 
 }</value>
     <comment>CouchDB view to find existing users with a specified email for the given application.</comment>
+  </data>
+  <data name="byEmailAndAppNameAndRowCount" xml:space="preserve">
+    <value>function(doc) { 	
+	if(doc.type == 'CouchDBMembershipProvider.User') 
+		emit([doc.email, doc.applicationName, _count], doc);
+}</value>
   </data>
   <data name="byUserNameAndAppName" xml:space="preserve">
     <value>function(doc) { 
 	if(doc.type == 'CouchDBMembershipProvider.User') 
 		emit([doc.username, doc.applicationName], doc) 
+}</value>
+  </data>
+  <data name="byUserNameAndAppNameExists" xml:space="preserve">
+    <value>function(doc) { 
+	if(doc.type == 'CouchDBMembershipProvider.User') 
+		emit([doc.username, doc.applicationName], true) 
 }</value>
   </data>
   <data name="byUserNameMap" xml:space="preserve">

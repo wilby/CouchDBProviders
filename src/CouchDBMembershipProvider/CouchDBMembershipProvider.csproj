@@ -77,9 +77,6 @@
     <Compile Include="Windsor\Installers\CouchInstaller..cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="CouchViewFunctions.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CouchViewFunctions.Designer.cs</LastGenOutput>
