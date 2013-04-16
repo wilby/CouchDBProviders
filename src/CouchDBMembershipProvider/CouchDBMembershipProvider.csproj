@@ -37,14 +37,12 @@
     <Reference Include="Castle.Windsor">
       <HintPath>..\packages\Castle.Windsor.3.2.0\lib\net40\Castle.Windsor.dll</HintPath>
     </Reference>
-    <Reference Include="DreamSeat">
-      <HintPath>..\packages\DreamSeat.1.2.0.0\lib\net40\DreamSeat.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=4.0.5.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Wcjj.CouchClient\src\Wcjj.CouchClient\bin\Release\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="mindtouch.dream">
-      <HintPath>..\packages\DreamSeat.1.2.0.0\lib\net40\mindtouch.dream.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Omu.ValueInjecter">
+      <HintPath>..\packages\ValueInjecter.2.3.3\lib\net35\Omu.ValueInjecter.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -61,13 +59,12 @@
     <Compile Include="ConnectionStringException.cs" />
     <Compile Include="CouchDBClient.cs" />
     <Compile Include="CouchMembershipSettingsException.cs" />
-    <Compile Include="CouchSettings.cs" />
-    <Compile Include="CouchViews.cs" />
     <Compile Include="CouchViewFunctions.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CouchViewFunctions.resx</DependentUpon>
     </Compile>
+    <Compile Include="CouchViews.cs" />
     <Compile Include="MembershipProvider.cs" />
     <Compile Include="PasswordUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,6 +78,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CouchViewFunctions.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Wcjj.CouchClient\src\Wcjj.CouchClient\Wcjj.CouchClient.csproj">
+      <Project>{9DFEC5D7-C5B0-47A7-AD6B-65E84AD25E10}</Project>
+      <Name>Wcjj.CouchClient</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

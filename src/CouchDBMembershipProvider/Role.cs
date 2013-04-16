@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DreamSeat;
+using Wcjj.CouchClient;
 
 namespace CouchDBMembershipProvider
 {
@@ -13,11 +13,9 @@ namespace CouchDBMembershipProvider
         public string Name { get; set; }
         public string ParentRoleId { get; set; }
 
-        public string Type { get; set; }
-
-        public Role()
+        public Role() : base()
         {
-            Type = this.GetType().ToString();
+        
         }
 
         public Role(string name, Role parentRole) : this()

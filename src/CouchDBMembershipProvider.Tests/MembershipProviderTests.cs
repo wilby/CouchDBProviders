@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using DreamSeat;
+using Wcjj.CouchClient;
 using System.Web.Security;
-using DreamSeat.Support;
+using System.Collections.Specialized;
+using System.Net;
 
 
 namespace CouchDBMembershipProvider.Tests
@@ -13,8 +14,9 @@ namespace CouchDBMembershipProvider.Tests
     [TestFixture]
     public class MembershipProviderTests : TestBase
     {
-        private CouchDatabase _db;
+        
         private MembershipProvider _provider;
+        private Client _Client;
 
         public MembershipProviderTests()
         {
@@ -23,31 +25,33 @@ namespace CouchDBMembershipProvider.Tests
 
         [TestFixtureSetUp]
         public void SetUp() {
-            CouchDBClient.MembershipSettings = GetMembershipConfigFake();
-            var client = CouchDBClient.Instance;            
-            
-            if (client.HasDatabase(CouchSettings.Database))
-                client.DeleteDatabase(CouchSettings.Database);
-
-            client.CreateDatabase(CouchSettings.Database);
-                        
-            _db = client.GetDatabase(CouchSettings.Database);
 
             _provider = new MembershipProvider();
-            _provider.Initialize("CouchDBMembershipProvider", GetMembershipConfigFake());
+            var config = GetMembershipConfigFake();
+            _provider.Initialize("CouchDBMembershipProvider", config);
+     
+            _Client = CouchDBClient.Instance;
+
+            if (!_Client.DatabaseExists())
+                _Client.CreateDatabase();                        
         }
 
         [TestFixtureTearDown]
-        public void TearDown() {                        
-            _db = null;
+        public void TearDown() {
+
+            if (_Client.DatabaseExists())
+                _Client.DeleteDatabase();
+
+            _Client = null;
             _provider = null;
+
         }
 
         [Test]
         public void Test_GetUser()
         {
             var fakeUser = CreateUserFake();
-            _db.CreateDocument<User>(fakeUser);
+            _Client.SaveDocument<User>(fakeUser);
 
             var user = _provider.GetUser(fakeUser.Username, false);
 
@@ -64,14 +68,22 @@ namespace CouchDBMembershipProvider.Tests
             var user = _provider.CreateUser(fakeUser.Username, Password, fakeUser.Email, fakeUser.PasswordQuestion,
                 fakeUser.PasswordAnswer, fakeUser.IsApproved, fakeUser.Username, out status);
 
-            ViewOptions vo = new ViewOptions();
-            vo.Key = new KeyOptions(new string[] { fakeUser.Username });
-            var dbUser = _db.GetView<string, User>("auth", "byUserName", vo);
+            var userView = _Client.GetView<User, CouchDocument>(
+               CouchViews.DESIGN_DOC_AUTH,
+               CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME,
+               new NameValueCollection() { { "key", string.Format("[\"{0}\", \"{1}\"]", fakeUser.Username, _provider.ApplicationName) } });
 
             Assert.IsNotNull(user);
             Assert.IsNotNull(user.CreationDate);
             Assert.AreEqual(user.ProviderUserKey, fakeUser.Username);
-            Assert.AreEqual(dbUser.Rows.FirstOrDefault().Value.Email, fakeUser.Email);
+            Assert.AreEqual(userView.Rows.FirstOrDefault().Value.Email, fakeUser.Email);
+            Assert.AreEqual(MembershipCreateStatus.Success, status);
+
+            MembershipCreateStatus badPassStatus;
+            var badPassUser = _provider.CreateUser(fakeUser.Username + "2", "shrtpas", "2" + fakeUser.Email, fakeUser.PasswordQuestion,
+                fakeUser.PasswordAnswer, fakeUser.IsApproved, fakeUser.Username, out badPassStatus);
+
+            Assert.AreEqual(MembershipCreateStatus.InvalidPassword, badPassStatus);
         }
 
         [Test]
@@ -99,46 +111,52 @@ namespace CouchDBMembershipProvider.Tests
         public void Test_UpdateUser()
         {
             var fakeUser = CreateUserFake();
-            _db.CreateDocument<User>(fakeUser);
+            _Client.SaveDocument(fakeUser);
             var toAppend = "Test_UpdateUser";            
             var newEmail = fakeUser.Email + toAppend;            
             var memUser = _provider.GetUser(fakeUser.Username, userIsOnline: false);            
             memUser.Email = newEmail;
 
             _provider.UpdateUser(memUser);
-            var updatedUser = _db.GetDocument<User>(fakeUser.Id);
+            var updatedUser = _Client.GetDocument<User>(fakeUser.Id);
 
             Assert.AreEqual(memUser.Email, updatedUser.Email);
         }
 
         [Test]
+        [ExpectedException(typeof(WebException))]
         public void Test_DeleteUser()
         {
+
             var fakeUser = CreateUserFake();
-            _db.CreateDocument<User>(fakeUser);
+            _Client.SaveDocument<User>(fakeUser);
 
             _provider.DeleteUser(fakeUser.Username, deleteAllRelatedData: false);
 
-            Assert.IsFalse(_db.DocumentExists(fakeUser.Id));
+            //Should throw a webexception with 404 not found
+            _Client.GetDocument(fakeUser.Id);
         }
 
         [Test]
         public void Test_ValidateUser()
         {
-            //var fakeUser = CreateUserFake();
-            //_db.CreateDocument<User>(fakeUser);
+            var fakeUser = CreateUserFake();
+            _Client.SaveDocument(fakeUser);
 
-            //Assert.IsTrue(_provider.ValidateUser(fakeUser.Username, Password));
-            //Assert.IsFalse(_provider.ValidateUser(fakeUser.Username, "BadPass"));
+            Assert.IsTrue(_provider.ValidateUser(fakeUser.Username, Password));
+            Assert.IsFalse(_provider.ValidateUser(fakeUser.Username, "BadPass"));
 
-            //var maxAttempts = Convert.ToInt32(GetMembershipConfigFake()["maxInvalidPasswordAttempts"]);
-            //while (maxAttempts > 0)
-            //    _provider.ValidateUser(fakeUser.Username, "BadPass");
-            
-            //var lockedOutUser = _db.GetDocument<User>(fakeUser.Id);
-            //Assert.IsTrue(lockedOutUser.IsLockedOut);
-            //Assert.IsTrue(lockedOutUser.FailedPasswordAnswerAttempts >= Convert.ToInt32(GetMembershipConfigFake()["maxInvalidPasswordAttempts"]));
-            //Assert.IsTrue(lockedOutUser.LastFailedPasswordAttempt > DateTime.Now.AddMinutes(-1));
+            var maxAttempts = Convert.ToInt32(GetMembershipConfigFake()["maxInvalidPasswordAttempts"]);
+            while (maxAttempts > 0)
+            {
+                _provider.ValidateUser(fakeUser.Username, "BadPass");
+                maxAttempts--;
+            }
+
+            var lockedOutUser = _Client.GetDocument<User>(fakeUser.Id);
+            Assert.IsTrue(lockedOutUser.IsLockedOut);
+            Assert.IsTrue(lockedOutUser.FailedPasswordAttempts >= Convert.ToInt32(GetMembershipConfigFake()["maxInvalidPasswordAttempts"]));
+            Assert.IsTrue(lockedOutUser.LastFailedPasswordAttempt > DateTime.Now.AddMinutes(-1));
         }
 
         [Test]
@@ -150,7 +168,7 @@ namespace CouchDBMembershipProvider.Tests
             foreach (var user in fakeUsers)
             {
                 user.Email = email;
-                _db.CreateDocument<User>(user);
+                _Client.SaveDocument<User>(user);
             }
 
             int totalRecords = 0;
@@ -163,6 +181,38 @@ namespace CouchDBMembershipProvider.Tests
             Assert.AreEqual(5, totalRecords);
 
             memUsers = _provider.FindUsersByEmail(email, 2, 5, out totalRecords);
+            Assert.AreEqual(0, memUsers.Count);
+            Assert.AreEqual(0, totalRecords);
+        }
+
+        [Test]
+        public void Test_FindUsersByUsername()
+        {
+            //Get rid of all the other users before running this test or it will fail
+            //due to all users starting with the name wilby
+            _Client.DeleteDatabase();
+            SetUp();
+
+            var fakeUsers = CreateMultipleUserFakes(10);
+            var email = "wilby@wcjj.net";
+            var username = "wilby";
+
+            foreach (var user in fakeUsers)
+            {
+                user.Email = email;
+                _Client.SaveDocument<User>(user);
+            }
+
+            int totalRecords = 0;
+            var memUsers = _provider.FindUsersByName(username, 0, 5, out totalRecords);
+            Assert.AreEqual(5, memUsers.Count);
+            Assert.AreEqual(5, totalRecords);
+
+            memUsers = _provider.FindUsersByName(username, 1, 5, out totalRecords);
+            Assert.AreEqual(5, memUsers.Count);
+            Assert.AreEqual(5, totalRecords);
+
+            memUsers = _provider.FindUsersByName(username, 2, 5, out totalRecords);
             Assert.AreEqual(0, memUsers.Count);
             Assert.AreEqual(0, totalRecords);
         }

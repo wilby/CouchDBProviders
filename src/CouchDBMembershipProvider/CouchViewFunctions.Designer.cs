@@ -63,6 +63,18 @@ namespace CouchDBMembershipProvider {
         /// <summary>
         ///   Looks up a localized string similar to function(doc) { 
         ///	if(doc.type == &apos;CouchDBMembershipProvider.User&apos;) 
+        ///		emit(doc.applicationName, doc) 
+        ///}.
+        /// </summary>
+        internal static string allUsersForAppName {
+            get {
+                return ResourceManager.GetString("allUsersForAppName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to function(doc) { 
+        ///	if(doc.type == &apos;CouchDBMembershipProvider.User&apos;) 
         ///		emit([doc.email, doc.applicationName], doc.id) 
         ///}.
         /// </summary>

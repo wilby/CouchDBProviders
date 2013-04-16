@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DreamSeat;
+using Wcjj.CouchClient;
 
 namespace CouchDBMembershipProvider
 {
     [Serializable]
     public class User : CouchDocument
-    {        
+    {
+       
         public string ApplicationName { get; set; }
         public string Username { get; set; }
         public string PasswordHash { get; set; }
@@ -33,12 +34,12 @@ namespace CouchDBMembershipProvider
 
         #endregion
 
-        public string Type { get; set; }
+        public string DocType { get; set; }
 
         public User()
         {
             Roles = new List<string>();
-            Type = this.GetType().ToString();
+            DocType = this.GetType().ToString();
         }
     }
 

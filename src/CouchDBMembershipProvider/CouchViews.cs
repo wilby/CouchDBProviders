@@ -2,52 +2,43 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DreamSeat;
-using DreamSeat.Support;
+using Wcjj.CouchClient;
 
 namespace CouchDBMembershipProvider
 {
     public class CouchViews
-    {
-        public const string DESIGN = "_design/";
-        public const string AUTH_VIEW_ID = "auth";
-        public const string AUTH_VIEW_NAME_BY_USERNAME = "byUserName";
-        public const string AUTH_VIEW_NAME_BY_Email_AND_APPNAME = "byEmailAndAppName";
-        public const string AUTH_VIEW_NAME_BY_Email_AND_APPNAME_AND_ROWCOUNT = "byEmailAndAppNameAndRowCount";
+    {        
+        public const string DESIGN_DOC_AUTH = "auth";
         public const string AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME = "byUserNameAndAppName";
+        public const string AUTH_VIEW_NAME_BY_Email_AND_APPNAME = "byEmailAndAppName";
         public const string AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME_EXISTS = "byUserNameAndAppNameExists";
+        public const string AUTH_VIEW_NAME_ALL_USERS_FOR_APP = "allUsersForAppName";
 
-        private CouchDatabase _DB;
-
-        public CouchViews()
+        public void CreateViews(Client client)
         {
-            _DB = CouchDBClient.Instance.GetDatabase(CouchSettings.Database);
-        }
+            var designDoc = new CouchDesignDocument("auth");
+            if (!client.DocumentExists(designDoc.Id))
+            {
+                designDoc.Views.Add("byUserName", new Dictionary<string, string>() {
+                {"map", CouchViewFunctions.byUserNameMap }});
 
-        public void CreateViews()
-        {       
-            if(!_DB.DocumentExists(string.Format("{0}{1}",DESIGN, AUTH_VIEW_ID)))
-                CreateAuthViews();
-        }
-        
-        private void CreateAuthViews()
-        {            
-            CouchDesignDocument authDD = new CouchDesignDocument("auth");
-            authDD.Views.Add(AUTH_VIEW_NAME_BY_USERNAME, new CouchView(CouchViewFunctions.byUserNameMap));
-            authDD.Views.Add(AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME, new CouchView(CouchViewFunctions.byUserNameAndAppName));
-            authDD.Views.Add(AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME_EXISTS, new CouchView(CouchViewFunctions.byUserNameAndAppNameExists));
-            authDD.Views.Add(AUTH_VIEW_NAME_BY_Email_AND_APPNAME, new CouchView(CouchViewFunctions.byEmailAndAppName));
-            authDD.Views.Add(AUTH_VIEW_NAME_BY_Email_AND_APPNAME_AND_ROWCOUNT, new CouchView(CouchViewFunctions.byEmailAndAppNameAndRowCount));
-            _DB.CreateDocument(authDD);
-            
-        }
+                designDoc.Views.Add("byUserNameAndAppName", new Dictionary<string, string>() {
+                {"map", CouchViewFunctions.byUserNameAndAppName }});
 
-        public static ViewOptions ViewOptionsForDualKeyViewSelectSingle(string userNameOrEmail, string appName)
-        {
-            ViewOptions vo = new ViewOptions();
-            vo.Key = new KeyOptions(new string[] { userNameOrEmail, appName });
+                designDoc.Views.Add("byUserNameAndAppNameExists", new Dictionary<string, string>() {
+                {"map", CouchViewFunctions.byUserNameAndAppNameExists } });
 
-            return vo;
+                designDoc.Views.Add("byEmailAndAppName", new Dictionary<string, string>() {
+                {"map", CouchViewFunctions.byEmailAndAppName }});
+
+                designDoc.Views.Add("byEmailAndAppNameAndRowCount", new Dictionary<string, string>() {
+                {"map", CouchViewFunctions.byEmailAndAppNameAndRowCount }});
+
+                designDoc.Views.Add("allUsersForAppName", new Dictionary<string, string>() {
+                {"map", CouchViewFunctions.allUsersForAppName }});
+
+                client.SaveDocument<CouchDesignDocument>(designDoc);
+            }
         }
     }
 }

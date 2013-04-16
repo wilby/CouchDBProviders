@@ -31,24 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac">
-      <HintPath>..\packages\DreamSeat.1.2.0.0\lib\net40\Autofac.dll</HintPath>
-    </Reference>
-    <Reference Include="DreamSeat">
-      <HintPath>..\packages\DreamSeat.1.2.0.0\lib\net40\DreamSeat.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DreamSeat.1.2.0.0\lib\net40\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="mindtouch.dream">
-      <HintPath>..\packages\DreamSeat.1.2.0.0\lib\net40\mindtouch.dream.dll</HintPath>
-    </Reference>
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=4.0.5.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Wcjj.CouchClient\src\Wcjj.CouchClient\bin\Release\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=2.6.2.12296, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -67,7 +55,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CouchClientAccessTests.cs" />
     <Compile Include="MembershipProviderTests.cs" />
     <Compile Include="ObjectExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,6 +65,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Wcjj.CouchClient\src\Wcjj.CouchClient\Wcjj.CouchClient.csproj">
+      <Project>{9DFEC5D7-C5B0-47A7-AD6B-65E84AD25E10}</Project>
+      <Name>Wcjj.CouchClient</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CouchDBMembershipProvider\CouchDBMembershipProvider.csproj">
       <Project>{EB126AED-B75C-416D-BA83-8A6EFD1FC687}</Project>
       <Name>CouchDBMembershipProvider</Name>

@@ -21,23 +21,24 @@ namespace CouchDBMembershipProvider.Tests
             } 
         }
 
-        protected string Password = "1234ABCD";
+        protected string Password = "1234ABCD@!";
 
         protected static NameValueCollection GetMembershipConfigFake()
         {
 
             NameValueCollection config = new NameValueCollection();
             config.Add("applicationName", "TestApp");
+            config.Add("connectionStringName", "Server");
+            config.Add("proxyConnectionStringName", "");
             config.Add("enablePasswordReset", "true");
             config.Add("enablePasswordRetrieval", "true");
             config.Add("maxInvalidPasswordAttempts", "5");
-            config.Add("minRequiredAlphaNumericCharacters", "2");
+            config.Add("minRequiredNonAlphanumericCharacters", "2");
             config.Add("minRequiredPasswordLength", "8");
             config.Add("requiresQuestionAndAnswer", "true");
             config.Add("requiresUniqueEmail", "true");
             config.Add("passwordAttemptWindow", "10");
-            config.Add("passwordFormat", "Hashed");
-            config.Add("connectionStringName", "Server");
+            config.Add("passwordFormat", "Hashed");            
             config.Add("enableEmbeddableDocumentStore", "true");
             return config;
         }

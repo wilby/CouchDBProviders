@@ -1,23 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Configuration;
+using System.Configuration.Provider;
 using System.Linq;
 using System.Text;
-using System.Web.Security;
-using DreamSeat;
-using System.Configuration.Provider;
 using System.Web.Configuration;
-using System.Collections.Specialized;
-using DreamSeat.Support;
-using System.Configuration;
+using System.Web.Security;
+using Wcjj.CouchClient;
+using System.Text.RegularExpressions;
+using System.Net;
+using System.Diagnostics;
 
 namespace CouchDBMembershipProvider
 {
+    /// <summary>
+    /// Implemented as defined by http://msdn.microsoft.com/en-us/library/f1kyba5e%28v=vs.100%29.aspx
+    /// </summary>
     public class MembershipProvider : System.Web.Security.MembershipProvider
     {
 
         #region Private Members
-        
-        private CouchDatabase _DB;       
 
         private const string ProviderName = "CouchDBMembership";
 
@@ -33,10 +36,15 @@ namespace CouchDBMembershipProvider
         private MembershipPasswordFormat _passwordFormat;
         private string _hashAlgorithm;
         private string _validationKey;
-
+        private Client _Client;
+        private string _twoKeyViewFormatString = "[\"{0}\", \"{1}\"]";
         #endregion
 
         #region Overriden Public Members
+
+        public string CouchConnectionStringName { get; set; }
+
+        public string ProxyConnectionStringName { get; set; }
 
         public override string ApplicationName { get; set; }
 
@@ -117,7 +125,7 @@ namespace CouchDBMembershipProvider
             ApplicationName = GetConfigValue(config["applicationName"], System.Web.Hosting.HostingEnvironment.ApplicationVirtualPath);
             _maxInvalidPasswordAttempts = Convert.ToInt32(GetConfigValue(config["maxInvalidPasswordAttempts"], "5"));
             _passwordAttemptWindow = Convert.ToInt32(GetConfigValue(config["passwordAttemptWindow"], "10"));
-            _minRequiredNonAlphanumericCharacters = Convert.ToInt32(GetConfigValue(config["minRequiredAlphaNumericCharacters"], "1"));
+            _minRequiredNonAlphanumericCharacters = Convert.ToInt32(GetConfigValue(config["minRequiredNonAlphanumericCharacters"], "1"));
             _minRequiredPasswordLength = Convert.ToInt32(GetConfigValue(config["minRequiredPasswordLength"], "7"));
             _passwordStrengthRegularExpression = Convert.ToString(GetConfigValue(config["passwordStrengthRegularExpression"], String.Empty));
             _enablePasswordReset = Convert.ToBoolean(GetConfigValue(config["enablePasswordReset"], "true"));
@@ -167,21 +175,23 @@ namespace CouchDBMembershipProvider
 
         private void InitializeCouchSpecificSettings(NameValueCollection config)
         {
-            string conString = ConfigurationManager.ConnectionStrings[
-                config["connectionStringName"]].ConnectionString;
+            string conString = config["connectionStringName"];
+            string proxyConString = config["proxyConnectionStringName"];
+
             if (string.IsNullOrEmpty(conString))
                 throw new ProviderException(string.Format(
                     "The connection string name in membership settings is wrong or not set or the connection string {0} does not exist.",
                     config["connectionStringName"]));
 
-            CouchDBClient.MembershipSettings = config;
-            CouchSettings.InitializeSettings(conString);
+            CouchDBClient.ConnectionStringName = conString;
 
-            _DB = CouchDBClient.Instance.GetDatabase(CouchSettings.Database);
+            if (!string.IsNullOrEmpty(proxyConString))
+                CouchDBClient.ProxyConnectionStringName = proxyConString;
+
+            _Client = CouchDBClient.Instance;
 
             CouchViews cv = new CouchViews();            
-            cv.CreateViews();
-            
+            cv.CreateViews(_Client);
         }
 
         public override bool ChangePassword(string username, string oldPassword, string newPassword)
@@ -198,9 +208,10 @@ namespace CouchDBMembershipProvider
         {
 
             var exists = false;
-            var existsView = _DB.GetView<string[], bool>(CouchViews.AUTH_VIEW_ID,
+            var existsView = _Client.GetView<bool, CouchDocument>(
+                CouchViews.DESIGN_DOC_AUTH,
                 CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME_EXISTS,
-                CouchViews.ViewOptionsForDualKeyViewSelectSingle(username, ApplicationName));
+                new NameValueCollection() { { "key", string.Format(_twoKeyViewFormatString, username, ApplicationName) } });
 
             if (existsView.Rows.Count() == 1)
                 exists = true;
@@ -210,9 +221,14 @@ namespace CouchDBMembershipProvider
                 return null;
             }
 
+            
+
             ValidatePasswordEventArgs args = new ValidatePasswordEventArgs(username, password, true);
             OnValidatingPassword(args);
-            if (args.Cancel)
+
+            var validPass = IsValidPassword(password);
+
+            if (args.Cancel || !validPass)
             {
                 status = MembershipCreateStatus.InvalidPassword;
                 return null;
@@ -237,9 +253,10 @@ namespace CouchDBMembershipProvider
 
             if (RequiresUniqueEmail)
             {       
-                ViewResult<string[], User> existingUser = _DB.GetView<string[], User>(CouchViews.AUTH_VIEW_ID, 
-                CouchViews.AUTH_VIEW_NAME_BY_Email_AND_APPNAME, 
-                CouchViews.ViewOptionsForDualKeyViewSelectSingle(email, ApplicationName));                        
+                var existingUser = _Client.GetView<string, CouchDocument>(
+                CouchViews.DESIGN_DOC_AUTH,
+                CouchViews.AUTH_VIEW_NAME_BY_Email_AND_APPNAME,
+                new NameValueCollection() { {"key", string.Format(_twoKeyViewFormatString, email, ApplicationName) } });                        
 
                 if (existingUser.Rows.Count() > 0)
                 {
@@ -248,7 +265,7 @@ namespace CouchDBMembershipProvider
                 }
             }
 
-            _DB.CreateDocument<User>(user);
+            _Client.SaveDocument<User>(user);
             status = MembershipCreateStatus.Success;
             return UserToMembershipUser(user);
         }
@@ -262,50 +279,102 @@ namespace CouchDBMembershipProvider
         /// <returns></returns>
         public override bool DeleteUser(string username, bool deleteAllRelatedData)
         {
-            var userView = _DB.GetView<string[], User>(CouchViews.AUTH_VIEW_ID, 
-                CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME, 
-                CouchViews.ViewOptionsForDualKeyViewSelectSingle(username, ApplicationName));
+            var userView = _Client.GetView<User, User>(CouchViews.DESIGN_DOC_AUTH, CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME, 
+                new NameValueCollection() { {"key", string.Format(_twoKeyViewFormatString,username, ApplicationName) } });
 
             if (userView.Rows.Count() == 0)            
                 return false;
-            
-            _DB.DeleteDocument(userView.Rows.FirstOrDefault().Value);
+
+            var doc = userView.Rows.FirstOrDefault().Value;
+            try
+            {
+                _Client.DeleteDocument(doc);
+            }
+            catch (WebException wex)
+            {
+                Debug.Write(wex.StackTrace);
+                return false;
+            }
             return true;
         }
 
+        /// <summary>
+        /// Searches for any user whose email starts with the value provided by emailToMatch. 
+        /// The original implementation guide calls for returning any users whose email 
+        /// contains the emailToMatch but without couchdb-lucene or other full text search
+        /// provider this is not possible.
+        /// </summary>
+        /// <param name="emailToMatch">A full email or substring of an email to match</param>
+        /// <param name="pageIndex">The index of a page for pagination</param>
+        /// <param name="pageSize">The number of records to return per page</param>
+        /// <param name="totalRecords">Total records returned, feedback for when search results are less than pageSize</param>
+        /// <returns>MembershipUserCollection</returns>
         public override MembershipUserCollection FindUsersByEmail(string emailToMatch, int pageIndex, int pageSize, out int totalRecords)
         {
-            ViewOptions vo = CouchViews.ViewOptionsForDualKeyViewSelectSingle(emailToMatch, ApplicationName);
-            vo.Limit = pageSize;
-            vo.IncludeDocs = true;
-            
+            return FindUsersBy(emailToMatch, CouchViews.AUTH_VIEW_NAME_BY_Email_AND_APPNAME, pageIndex, pageSize, out totalRecords);
+        }
 
-            var userView = _DB.GetView<string[], User>(CouchViews.AUTH_VIEW_ID,
-                CouchViews.AUTH_VIEW_NAME_BY_Email_AND_APPNAME,
-                vo);
+        /// <summary>
+        /// Searches for any user that starts with the name provided by usernameToMatch. 
+        /// The original implementation guide calls for returning any users whose username 
+        /// contains the usernameToMatch but without couchdb-lucene or other full text search
+        /// provider this is not possible.
+        /// </summary>
+        /// <param name="usernameToMatch">A full username or substring of a username to match</param>
+        /// <param name="pageIndex">The index of a page for pagination</param>
+        /// <param name="pageSize">The number of records to return per page</param>
+        /// <param name="totalRecords">Total records returned, feedback for when search results are less than pageSize</param>
+        /// <returns>MembershipUserCollection</returns>
+        public override MembershipUserCollection FindUsersByName(string usernameToMatch, int pageIndex, int pageSize, out int totalRecords)
+        {
+            return FindUsersBy(usernameToMatch, CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME, pageIndex, pageSize, out totalRecords);
+        }
+
+        private MembershipUserCollection FindUsersBy(string nameOrEmailToMatch, string authViewName, int pageIndex, int pageSize, out int totalRecords)
+        {
+            var userView = _Client.GetView<User, User>(
+                CouchViews.DESIGN_DOC_AUTH,
+                authViewName,
+                new NameValueCollection() { { "startkey", string.Format(_twoKeyViewFormatString, nameOrEmailToMatch, ApplicationName) },
+                    { "endkey", string.Format(_twoKeyViewFormatString, nameOrEmailToMatch + "9999", ApplicationName) },
+                {"limit", pageSize.ToString() }, {"skip", (pageSize * pageIndex).ToString() }, { "include_docs", true.ToString() }});
 
             MembershipUserCollection userColl = new MembershipUserCollection();
-            if(userView.Rows.Count() == 0) {
+            if (userView.Rows.Count() == 0)
+            {
                 totalRecords = userView.Rows.Count();
                 return userColl;
             }
 
             foreach (var row in userView.Rows)
             {
-                userColl.Add(UserToMembershipUser(row.Value));
+                userColl.Add(UserToMembershipUser(row.Doc));
             }
             totalRecords = userView.Rows.Count();
             return userColl;
         }
 
-        public override MembershipUserCollection FindUsersByName(string usernameToMatch, int pageIndex, int pageSize, out int totalRecords)
-        {
-            throw new NotImplementedException();
-        }
-
         public override MembershipUserCollection GetAllUsers(int pageIndex, int pageSize, out int totalRecords)
         {
-            throw new NotImplementedException();
+            var userView = _Client.GetView<string, User>(
+                CouchViews.DESIGN_DOC_AUTH,
+                CouchViews.AUTH_VIEW_NAME_ALL_USERS_FOR_APP,
+                new NameValueCollection() { { "key", string.Format("{0}", ApplicationName) },
+                {"limit", pageSize.ToString() }, {"skip", (pageSize * pageIndex).ToString() }});
+
+            MembershipUserCollection userColl = new MembershipUserCollection();
+            if (userView.Rows.Count() == 0)
+            {
+                totalRecords = userView.Rows.Count();
+                return userColl;
+            }
+
+            foreach (var row in userView.Rows)
+            {
+                userColl.Add(UserToMembershipUser(row.Doc));
+            }
+            totalRecords = userView.Rows.Count();
+            return userColl;
         }
 
         public override int GetNumberOfUsersOnline()
@@ -345,12 +414,10 @@ namespace CouchDBMembershipProvider
         
         public override void UpdateUser(MembershipUser user)
         {
-
-            ViewOptions vo = new ViewOptions() { 
-                Key = new KeyOptions(new string[] { user.UserName, ApplicationName }) 
-            };            
-            var userView = _DB.GetView<string[], User>(CouchViews.AUTH_VIEW_ID, 
-                CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME,vo);
+            var userView = _Client.GetView<User,CouchDocument>(
+                CouchViews.DESIGN_DOC_AUTH,
+                CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME,
+                new NameValueCollection() { { "key", string.Format(_twoKeyViewFormatString, user.UserName, ApplicationName) } });
 
             if(userView.Rows.Count() == 0)
                 throw new ProviderException(string.Format("Cannot update the user {0}, they do not exist.", user.UserName));
@@ -365,7 +432,7 @@ namespace CouchDBMembershipProvider
             dbUser.IsApproved = user.IsApproved;
             dbUser.IsLockedOut = user.IsLockedOut;            
 
-            _DB.UpdateDocument<User>(dbUser);
+            _Client.SaveDocument<User>(dbUser);
 
         }
 
@@ -374,21 +441,23 @@ namespace CouchDBMembershipProvider
             if (string.IsNullOrEmpty(username))
                 return false;
 
-            var userView = _DB.GetView<string[], User>(CouchViews.AUTH_VIEW_ID,
+            var userView = _Client.GetView<User, CouchDocument>(
+                CouchViews.DESIGN_DOC_AUTH,
                 CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME,
-                CouchViews.ViewOptionsForDualKeyViewSelectSingle(username, ApplicationName));
+                new NameValueCollection() { { "key", string.Format(_twoKeyViewFormatString, username, ApplicationName) } });
 
             if(userView.Rows.Count() == 0)
                 return false;
 
-            var user = userView.Rows.FirstOrDefault().Value;
+            User user = userView.Rows.FirstOrDefault().Value;
+
             if (user.PasswordHash == EncodePassword(password, user.PasswordSalt))
             {
                 user.DateLastLogin = DateTime.Now;
                 user.IsOnline = true;
                 user.FailedPasswordAttempts = 0;
                 user.FailedPasswordAnswerAttempts = 0;
-                _DB.UpdateDocument(user);
+                _Client.SaveDocument(user);
                 return true;
             }
             else
@@ -396,7 +465,7 @@ namespace CouchDBMembershipProvider
                 user.LastFailedPasswordAttempt = DateTime.Now;
                 user.FailedPasswordAttempts++;
                 user.IsLockedOut = IsLockedOutValidationHelper(user);
-                _DB.UpdateDocument<User>(user);
+                _Client.SaveDocument<User>(user);
             }            
             return false;
         }
@@ -410,23 +479,45 @@ namespace CouchDBMembershipProvider
             return false;
         }
 
+        private bool IsValidPassword(string password)
+        {
+            var minLength = MinRequiredPasswordLength;
+            var minAlphaNumeric = MinRequiredNonAlphanumericCharacters;
+
+            if (password.Length < minLength)
+                return false;
+
+            if (minAlphaNumeric > 0)
+            {
+                int alphaNumericChars = 0;
+                foreach (var c in password)
+                {
+                    var alphanums = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+                    if (alphanums.Contains(c))
+                        alphaNumericChars++;
+                }
+                var isValid = ((password.Length - alphaNumericChars) >= minAlphaNumeric);
+                return isValid;
+            }
+            return true;
+        }
+
         #endregion
         
         #region Couch Specific Helper Methods        
 
         private User GetCouchUser(string username, bool userIsOnline)
         {
-            var db = CouchDBClient.Instance.GetDatabase(CouchSettings.Database);
-            DreamSeat.CouchView cv = new CouchView();
-            var viewOptions = new ViewOptions();
-            viewOptions.Key = new KeyOptions(new string[] { username });
 
-            var result = db.GetView<string, User>("auth", "byUserName", viewOptions);
+            var userView = _Client.GetView<User, CouchDocument>(
+                CouchViews.DESIGN_DOC_AUTH,
+                CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME,
+                new NameValueCollection() { { "key", string.Format(_twoKeyViewFormatString, username, ApplicationName) } });
 
-            if (result.Rows.Count() > 1)
+            if (userView.Rows.Count() > 1)
                 throw new ProviderException(string.Format("The user {0} has more than one record in the Membership database.", username));
 
-            var user = result.Rows.FirstOrDefault().Value;
+            var user = userView.Rows.FirstOrDefault().Value;
             return user;            
         }
 
@@ -439,7 +530,7 @@ namespace CouchDBMembershipProvider
 
         private void SaveCouchUser(User user)
         {
-            CouchDBClient.Instance.GetDatabase(CouchSettings.Database).CreateDocument<User>(user);            
+            CouchDBClient.Instance.SaveDocument(user);            
         }
 
         #endregion

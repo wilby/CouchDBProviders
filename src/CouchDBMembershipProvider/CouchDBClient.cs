@@ -2,23 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DreamSeat;
 using System.Collections.Specialized;
 using System.Runtime.InteropServices;
 using System.Configuration;
+using Wcjj.CouchClient;
 
 namespace CouchDBMembershipProvider
 {
     public sealed class CouchDBClient
     {
-        private static volatile CouchClient _couchClient;
+        private static volatile Client _couchClient;
         private static object syncRoot = new Object();
+        public static string ConnectionStringName { get; set; }
+        public static string ProxyConnectionStringName { get; set; }
 
         private CouchDBClient() { }
-
-        public static NameValueCollection MembershipSettings { get; set; }
-
-        public static CouchClient Instance {
+        
+        public static Client Instance {
             get
             {   
                 if (_couchClient == null)
@@ -27,25 +27,22 @@ namespace CouchDBMembershipProvider
                     {
                         if (_couchClient == null)
                         {
-                            if (MembershipSettings == null)
-                                throw new CouchMembershipSettingsException("The membership settings have not been set for CouchDBClient");
+                            if (string.IsNullOrEmpty(ConnectionStringName))
+                                throw new CouchMembershipSettingsException("connectionStringName must be set for the CouchDBMembershipProvider");
 
-                            string connectionString = ConfigurationManager.ConnectionStrings[MembershipSettings["connectionStringName"]].ConnectionString;
-                            CouchSettings.InitializeSettings(connectionString);
-
-                            IntPtr ssPassPtr = Marshal.SecureStringToBSTR(CouchSettings.Password);
-                            try
+                            if (!string.IsNullOrEmpty(ProxyConnectionStringName))
                             {   
-                                _couchClient = new CouchClient(CouchSettings.Host, CouchSettings.Port,
-                               CouchSettings.UserName, Marshal.PtrToStringBSTR(ssPassPtr));
+                                _couchClient = new Client(ConnectionStringName, ProxyConnectionStringName);
                             }
-                            finally
+                            else
                             {
-                                System.Runtime.InteropServices.Marshal.ZeroFreeBSTR(ssPassPtr);
-                            }
+                                _couchClient = new Client(ConnectionStringName);
+                            }                            
                         }
                     }
                 }
+                if (!_couchClient.DatabaseExists())
+                    _couchClient.CreateDatabase();
                 return _couchClient;
             }
         }
