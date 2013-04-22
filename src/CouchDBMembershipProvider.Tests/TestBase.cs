@@ -40,6 +40,7 @@ namespace CouchDBMembershipProvider.Tests
             config.Add("passwordAttemptWindow", "10");
             config.Add("passwordFormat", "Hashed");            
             config.Add("enableEmbeddableDocumentStore", "true");
+            
             return config;
         }
 
@@ -54,8 +55,7 @@ namespace CouchDBMembershipProvider.Tests
                 PasswordSalt = salt,
                 Email = string.Format("wilby{0}@wcjj.net", UniqueId),
                 PasswordQuestion = "A QUESTION",
-                PasswordAnswer = "A ANSWER",
-                IsOnline = true,
+                PasswordAnswer = "A ANSWER",                
                 IsApproved = true,
                 Comment = "A FAKE USER",
                 ApplicationName = config["applicationName"],

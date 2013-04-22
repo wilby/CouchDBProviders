@@ -11,6 +11,8 @@ using Wcjj.CouchClient;
 using System.Text.RegularExpressions;
 using System.Net;
 using System.Diagnostics;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace CouchDBMembershipProvider
 {
@@ -37,7 +39,8 @@ namespace CouchDBMembershipProvider
         private string _hashAlgorithm;
         private string _validationKey;
         private Client _Client;
-        private string _twoKeyViewFormatString = "[\"{0}\", \"{1}\"]";
+        private string _twoKeyViewFormatString = "[\"{0}\",\"{1}\"]";
+        private string _twoKeyViewDateFirstFormatString = "[{0},\"{1}\"]";
         #endregion
 
         #region Overriden Public Members
@@ -97,6 +100,7 @@ namespace CouchDBMembershipProvider
         {
             get { return _requiresUniqueEmail; }
         }
+               
 
         #endregion
 
@@ -132,6 +136,7 @@ namespace CouchDBMembershipProvider
             _enablePasswordRetrieval = Convert.ToBoolean(GetConfigValue(config["enablePasswordRetrieval"], "true"));
             _requiresQuestionAndAnswer = Convert.ToBoolean(GetConfigValue(config["requiresQuestionAndAnswer"], "false"));
             _requiresUniqueEmail = Convert.ToBoolean(GetConfigValue(config["requiresUniqueEmail"], "true"));
+            
         }
 
         private void InitPasswordEncryptionSettings(NameValueCollection config)
@@ -196,7 +201,42 @@ namespace CouchDBMembershipProvider
 
         public override bool ChangePassword(string username, string oldPassword, string newPassword)
         {
-            throw new NotImplementedException();
+            
+            try
+            {
+
+                var newPassIsValid = IsValidPassword(newPassword); 
+                var validUser = ValidateUser(username, oldPassword);
+                if (!validUser || !newPassIsValid)
+                    return false;
+
+                var userView = _Client.GetView<User, CouchDocument>(
+                    CouchViews.DESIGN_DOC_AUTH,
+                    CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME,
+                    new NameValueCollection() { { "key", string.Format(_twoKeyViewFormatString, username, ApplicationName) } });
+
+                if (!userView.HasRows)
+                    return false;
+                
+                ValidatePasswordEventArgs args = new ValidatePasswordEventArgs(username, newPassword, true);
+                OnValidatingPassword(args);
+
+                if (args.Cancel)
+                    return false;
+
+                var user = userView.Rows[0].Value;
+                user.PasswordHash = EncodePassword(newPassword, user.PasswordSalt);
+                _Client.SaveDocument<User>(user);
+
+                return true;
+            }
+            catch (WebException wex)
+            {
+                Debug.WriteLine(wex.StackTrace);
+                return false;
+            }
+
+
         }
 
         public override bool ChangePasswordQuestionAndAnswer(string username, string password, string newPasswordQuestion, string newPasswordAnswer)
@@ -249,7 +289,7 @@ namespace CouchDBMembershipProvider
             user.PasswordAnswer = string.IsNullOrEmpty(passwordAnswer) ? passwordAnswer : EncodePassword(passwordAnswer, user.PasswordSalt);
             user.IsApproved = isApproved;
             user.IsLockedOut = false;
-            user.IsOnline = false;
+            
 
             if (RequiresUniqueEmail)
             {       
@@ -378,13 +418,34 @@ namespace CouchDBMembershipProvider
         }
 
         public override int GetNumberOfUsersOnline()
-        {
-            throw new NotImplementedException();
+        {            
+            var oldestOnlineTime = DateTime.Now.Subtract(new TimeSpan(0, Membership.UserIsOnlineTimeWindow, 0));
+            var userView = _Client.GetView<string, User>(
+                 CouchViews.DESIGN_DOC_AUTH,
+                 CouchViews.AUTH_VIEW_USERS_ONLINE,
+                 new NameValueCollection() { { "startkey", string.Format(_twoKeyViewDateFirstFormatString, JsonConvert.SerializeObject(oldestOnlineTime, new IsoDateTimeConverter()) , ApplicationName) },
+                     { "endkey", string.Format(_twoKeyViewDateFirstFormatString, JsonConvert.SerializeObject(DateTime.Now, new IsoDateTimeConverter()) , ApplicationName) }                     
+                });
+
+            return userView.Rows.Count();
         }
 
         public override string GetPassword(string username, string answer)
         {
-            throw new NotImplementedException();
+            if (!EnablePasswordRetrieval)
+                throw new ProviderException("Retrieving passwords is not enabled.");
+
+            var userView = _Client.GetView<User, User>(CouchViews.DESIGN_DOC_AUTH, CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME,
+                new NameValueCollection() { { "key", string.Format(_twoKeyViewFormatString, username, ApplicationName) } });
+
+            var user = userView.Rows[0].Value;
+            
+            if (RequiresQuestionAndAnswer && (answer != user.PasswordAnswer))
+                throw new MembershipPasswordException("Invalid answer.");
+
+            //This will throw a provider exception for hashed passwords
+            var pass = UnEncodePassword(user.PasswordHash, user.PasswordSalt);
+            return pass;
         }
 
         public override MembershipUser GetUser(string username, bool userIsOnline)
@@ -394,22 +455,87 @@ namespace CouchDBMembershipProvider
 
         public override MembershipUser GetUser(object providerUserKey, bool userIsOnline)
         {
-            throw new NotImplementedException();
+            User cUser;
+            try
+            {
+                cUser = _Client.GetDocument<User>((string)providerUserKey);
+            }
+            catch (WebException ex)
+            {
+                Debug.Write(ex.StackTrace);
+                if(ex.Message.Contains("404"))
+                    return null;
+                throw;
+            }
+
+            if(userIsOnline) {
+                cUser.LastActivityDate = DateTime.Now;                
+                _Client.SaveDocument<User>(cUser);
+            }
+            return UserToMembershipUser(cUser);
         }
 
         public override string GetUserNameByEmail(string email)
         {
-            throw new NotImplementedException();
+            var userView = _Client.GetView<string, string>(CouchViews.DESIGN_DOC_AUTH, CouchViews.AUTH_VIEW_NAME_BY_EMAIL_AND_APPNAME_VALUE_IS_USERNAME_ONLY,
+              new NameValueCollection() { { "key", string.Format(_twoKeyViewFormatString, email, ApplicationName) } });
+
+            string username = "";
+            if (userView.Rows.Count > 0)
+                username = userView.Rows[0].Value;
+            return username;
         }
 
         public override string ResetPassword(string username, string answer)
         {
-            throw new NotImplementedException();
+            if (!EnablePasswordReset)
+                throw new NotSupportedException("Password resets are not enabled.");
+
+            var userView = _Client.GetView<User, User>(CouchViews.DESIGN_DOC_AUTH, CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME,
+              new NameValueCollection() { { "key", string.Format(_twoKeyViewFormatString, username, ApplicationName) } });
+                        
+            var user = userView.Rows[0].Value;
+
+            if (RequiresQuestionAndAnswer && (answer != user.PasswordAnswer))
+                throw new MembershipPasswordException("Wrong answer.");
+
+            var password = Membership.GeneratePassword(MinRequiredPasswordLength, MinRequiredNonAlphanumericCharacters);
+
+            ValidatePasswordEventArgs args = new ValidatePasswordEventArgs(username, password, true);
+            OnValidatingPassword(args);
+
+            if (!args.Cancel)
+            {                
+                user.PasswordSalt = PasswordUtil.CreateRandomSalt();
+                user.PasswordHash = EncodePassword(password, user.PasswordSalt);
+                user.LastPasswordChangedDate = DateTime.Now;
+                _Client.SaveDocument<User>(user);
+                return password;
+            }
+            //cancelled
+            return null;
         }
 
         public override bool UnlockUser(string userName)
         {
-            throw new NotImplementedException();
+            try {
+                var userView = _Client.GetView<User, User>(CouchViews.DESIGN_DOC_AUTH, CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME,
+                 new NameValueCollection() { { "key", string.Format(_twoKeyViewFormatString, userName, ApplicationName) } });
+
+                if(!userView.HasRows)
+                    return false;
+
+                var user = userView.Rows[0].Value;
+                user.IsLockedOut = false;
+                user.LastLockedOutDate = DateTime.Now;
+
+                _Client.SaveDocument<User>(user);
+                return true;
+            }
+            catch(WebException wex) {
+                Debug.WriteLine(wex.StackTrace);
+                return false;
+            }
         }
         
         public override void UpdateUser(MembershipUser user)
@@ -427,8 +553,7 @@ namespace CouchDBMembershipProvider
             dbUser.Username = user.UserName;
             dbUser.Email = user.Email;
             dbUser.DateCreated = user.CreationDate;
-            dbUser.DateLastLogin = user.LastLoginDate;
-            dbUser.IsOnline = user.IsOnline;
+            dbUser.DateLastLogin = user.LastLoginDate;            
             dbUser.IsApproved = user.IsApproved;
             dbUser.IsLockedOut = user.IsLockedOut;            
 
@@ -453,8 +578,7 @@ namespace CouchDBMembershipProvider
 
             if (user.PasswordHash == EncodePassword(password, user.PasswordSalt))
             {
-                user.DateLastLogin = DateTime.Now;
-                user.IsOnline = true;
+                user.DateLastLogin = DateTime.Now;                
                 user.FailedPasswordAttempts = 0;
                 user.FailedPasswordAnswerAttempts = 0;
                 _Client.SaveDocument(user);
@@ -486,7 +610,7 @@ namespace CouchDBMembershipProvider
 
             if (password.Length < minLength)
                 return false;
-
+            
             if (minAlphaNumeric > 0)
             {
                 int alphaNumericChars = 0;
@@ -518,13 +642,24 @@ namespace CouchDBMembershipProvider
                 throw new ProviderException(string.Format("The user {0} has more than one record in the Membership database.", username));
 
             var user = userView.Rows.FirstOrDefault().Value;
+
+            if (userIsOnline)
+            {
+                user.LastActivityDate = DateTime.Now;
+                _Client.SaveDocument<User>(user);
+            }
             return user;            
         }
 
         private MembershipUser UserToMembershipUser(User user)
         {
-            return new MembershipUser(ProviderName, user.Username, user.Username, user.Email, user.PasswordQuestion, user.Comment, user.IsApproved, user.IsLockedOut
-                , user.DateCreated, user.DateLastLogin.HasValue ? user.DateLastLogin.Value : new DateTime(1900, 1, 1), new DateTime(1900, 1, 1), new DateTime(1900, 1, 1), new DateTime(1900, 1, 1));
+            var memUser = new MembershipUser(ProviderName, user.Username, user.Username, user.Email, user.PasswordQuestion, user.Comment, user.IsApproved, user.IsLockedOut
+                , user.DateCreated, 
+                user.DateLastLogin.HasValue ? user.DateLastLogin.Value : new DateTime(1900, 1, 1),
+                user.DateLastLogin.HasValue ? user.DateLastLogin.Value : new DateTime(1900, 1, 1),
+                user.LastPasswordChangedDate == null ? new DateTime(1900, 1, 1) : user.LastPasswordChangedDate,
+                user.LastLockedOutDate == null ? new DateTime(1900, 1, 1) : user.LastLockedOutDate);
+            return memUser;
         }
 
 

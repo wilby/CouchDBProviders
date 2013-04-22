@@ -99,6 +99,18 @@ namespace CouchDBMembershipProvider {
         /// <summary>
         ///   Looks up a localized string similar to function(doc) { 
         ///	if(doc.type == &apos;CouchDBMembershipProvider.User&apos;) 
+        ///		emit([doc.email,doc.applicationName], doc.username) 
+        ///}.
+        /// </summary>
+        internal static string byEmailAndAppNameValueIsUsernameOnly {
+            get {
+                return ResourceManager.GetString("byEmailAndAppNameValueIsUsernameOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to function(doc) { 
+        ///	if(doc.type == &apos;CouchDBMembershipProvider.User&apos;) 
         ///		emit([doc.username, doc.applicationName], doc) 
         ///}.
         /// </summary>
@@ -129,6 +141,27 @@ namespace CouchDBMembershipProvider {
         internal static string byUserNameMap {
             get {
                 return ResourceManager.GetString("byUserNameMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to function(doc) { 
+        ///	if(doc.type == &apos;CouchDBMembershipProvider.User&apos;) 
+        ///		emit([doc.dateLastLogin, doc.applicationName], 1) 
+        ///}.
+        /// </summary>
+        internal static string userIsOnline {
+            get {
+                return ResourceManager.GetString("userIsOnline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to function(keys, values, rereduce){ return sum(values); }.
+        /// </summary>
+        internal static string userIsOnlineReduce {
+            get {
+                return ResourceManager.GetString("userIsOnlineReduce", resourceCulture);
             }
         }
     }

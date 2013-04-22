@@ -24,22 +24,21 @@ namespace CouchDBMembershipProvider
 
         public string PasswordQuestion { get; set; }
         public string PasswordAnswer { get; set; }
-        public bool IsLockedOut { get; set; }
-        public bool IsOnline { get; set; }
+        public bool IsLockedOut { get; set; }        
         public int FailedPasswordAttempts { get; set; }
         public int FailedPasswordAnswerAttempts { get; set; }
         public DateTime LastFailedPasswordAttempt { get; set; }
         public string Comment { get; set; }
         public bool IsApproved { get; set; }
+        public DateTime LastActivityDate { get; set; }
+        public DateTime LastPasswordChangedDate { get; set; }
+        public DateTime LastLockedOutDate { get; set; }
 
         #endregion
 
-        public string DocType { get; set; }
-
-        public User()
+        public User() : base()
         {
             Roles = new List<string>();
-            DocType = this.GetType().ToString();
         }
     }
 

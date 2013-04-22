@@ -13,6 +13,8 @@ namespace CouchDBMembershipProvider
         public const string AUTH_VIEW_NAME_BY_Email_AND_APPNAME = "byEmailAndAppName";
         public const string AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME_EXISTS = "byUserNameAndAppNameExists";
         public const string AUTH_VIEW_NAME_ALL_USERS_FOR_APP = "allUsersForAppName";
+        public const string AUTH_VIEW_USERS_ONLINE = "userIsOnline";
+        public const string AUTH_VIEW_NAME_BY_EMAIL_AND_APPNAME_VALUE_IS_USERNAME_ONLY = "byEmailAndAppNameValueIsUsernameOnly";
 
         public void CreateViews(Client client)
         {
@@ -36,6 +38,12 @@ namespace CouchDBMembershipProvider
 
                 designDoc.Views.Add("allUsersForAppName", new Dictionary<string, string>() {
                 {"map", CouchViewFunctions.allUsersForAppName }});
+
+                designDoc.Views.Add("userIsOnline", new Dictionary<string, string>() {
+                {"map", CouchViewFunctions.userIsOnline }, { "reduce", CouchViewFunctions.userIsOnlineReduce } });
+
+                designDoc.Views.Add("byEmailAndAppNameValueIsUsernameOnly", new Dictionary<string, string>() {
+                {"map", CouchViewFunctions.byEmailAndAppNameValueIsUsernameOnly } });
 
                 client.SaveDocument<CouchDesignDocument>(designDoc);
             }

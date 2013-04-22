@@ -136,6 +136,12 @@
 		emit([doc.email, doc.applicationName, _count], doc);
 }</value>
   </data>
+  <data name="byEmailAndAppNameValueIsUsernameOnly" xml:space="preserve">
+    <value>function(doc) { 
+	if(doc.type == 'CouchDBMembershipProvider.User') 
+		emit([doc.email,doc.applicationName], doc.username) 
+}</value>
+  </data>
   <data name="byUserNameAndAppName" xml:space="preserve">
     <value>function(doc) { 
 	if(doc.type == 'CouchDBMembershipProvider.User') 
@@ -154,5 +160,14 @@
 		emit(doc.username, doc) 
 }</value>
     <comment>CouchDB view to select Users by username.</comment>
+  </data>
+  <data name="userIsOnline" xml:space="preserve">
+    <value>function(doc) { 
+	if(doc.type == 'CouchDBMembershipProvider.User') 
+		emit([doc.dateLastLogin, doc.applicationName], 1) 
+}</value>
+  </data>
+  <data name="userIsOnlineReduce" xml:space="preserve">
+    <value>function(keys, values, rereduce){ return sum(values); }</value>
   </data>
 </root>
