@@ -397,5 +397,25 @@ namespace CouchDBMembershipProvider.Tests
             changed = _provider.ChangePassword("badUser", Password, newPass);
             Assert.IsFalse(changed);
         }
+
+        [Test]
+        public void Test_ChangePasswordQuestionAndAnswer()
+        {
+            var fake = CreateUserFake();
+            _Client.SaveDocument<User>(fake);
+
+            var newQuestion = "Mother's maiden name";
+            var newAnswer = "Smith";
+
+
+            var changed = _provider.ChangePasswordQuestionAndAnswer(fake.Username, Password, newQuestion, newAnswer);
+            Assert.IsTrue(changed);
+
+            changed = _provider.ChangePasswordQuestionAndAnswer(fake.Username, "badPass", newQuestion, newAnswer);
+            Assert.IsFalse(changed);
+
+            changed = _provider.ChangePasswordQuestionAndAnswer("nonExistentUser", Password, newQuestion, newAnswer);
+            Assert.IsFalse(changed);
+        }
     }
 }

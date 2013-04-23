@@ -241,7 +241,31 @@ namespace CouchDBMembershipProvider
 
         public override bool ChangePasswordQuestionAndAnswer(string username, string password, string newPasswordQuestion, string newPasswordAnswer)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var validated = ValidateUser(username, password);
+
+                var userView = _Client.GetView<User, CouchDocument>(
+                       CouchViews.DESIGN_DOC_AUTH,
+                       CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME,
+                       new NameValueCollection() { { "key", string.Format(_twoKeyViewFormatString, username, ApplicationName) } });
+
+                if (validated && userView.HasRows)
+                {
+                    var user = userView.Rows[0].Value;
+
+                    user.PasswordQuestion = newPasswordQuestion;
+                    user.PasswordAnswer = newPasswordAnswer;
+                    _Client.SaveDocument<User>(user);
+                    return true;
+                }
+                return false;
+            }
+            catch (WebException wex)
+            {
+                Debug.WriteLine(wex.StackTrace);
+                return false;
+            }
         }
 
         public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status)
