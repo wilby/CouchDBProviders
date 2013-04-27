@@ -1,4 +1,4 @@
-CouchDBMembershipProvider
+CouchDB Membership Providers
 =========================
 
-Asp.Net Membership Provider for CouchDB
+Asp.Net Membership, Role and Profile Providers for CouchDB
