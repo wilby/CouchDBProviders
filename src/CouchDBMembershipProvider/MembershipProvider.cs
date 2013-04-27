@@ -200,8 +200,7 @@ namespace CouchDBMembershipProvider
         }
 
         public override bool ChangePassword(string username, string oldPassword, string newPassword)
-        {
-            
+        {            
             try
             {
 
@@ -420,10 +419,10 @@ namespace CouchDBMembershipProvider
 
         public override MembershipUserCollection GetAllUsers(int pageIndex, int pageSize, out int totalRecords)
         {
-            var userView = _Client.GetView<string, User>(
+            var userView = _Client.GetView<User, User>(
                 CouchViews.DESIGN_DOC_AUTH,
                 CouchViews.AUTH_VIEW_NAME_ALL_USERS_FOR_APP,
-                new NameValueCollection() { { "key", string.Format("{0}", ApplicationName) },
+                new NameValueCollection() { { "key", string.Format("\"{0}\"", ApplicationName) },
                 {"limit", pageSize.ToString() }, {"skip", (pageSize * pageIndex).ToString() }});
 
             MembershipUserCollection userColl = new MembershipUserCollection();
@@ -435,7 +434,7 @@ namespace CouchDBMembershipProvider
 
             foreach (var row in userView.Rows)
             {
-                userColl.Add(UserToMembershipUser(row.Doc));
+                userColl.Add(UserToMembershipUser(row.Value));
             }
             totalRecords = userView.Rows.Count();
             return userColl;
@@ -472,9 +471,19 @@ namespace CouchDBMembershipProvider
             return pass;
         }
 
+        /// <summary>
+        /// Retrieves a MembershipUser from the couch database with the given username for the 
+        /// current ApplicationName.
+        /// </summary>
+        /// <param name="username">The username of the membership user to query for</param>
+        /// <param name="userIsOnline">Update the LastActivityDate?</param>
+        /// <returns></returns>
         public override MembershipUser GetUser(string username, bool userIsOnline)
-        {
-            return UserToMembershipUser(GetCouchUser(username, userIsOnline));
+        {            
+            var couchUser = GetCouchUser(username, userIsOnline);
+            if (couchUser == null)
+                return null;
+            return UserToMembershipUser(couchUser);
         }
 
         public override MembershipUser GetUser(object providerUserKey, bool userIsOnline)
@@ -665,7 +674,11 @@ namespace CouchDBMembershipProvider
             if (userView.Rows.Count() > 1)
                 throw new ProviderException(string.Format("The user {0} has more than one record in the Membership database.", username));
 
-            var user = userView.Rows.FirstOrDefault().Value;
+            var nullOrRecord = userView.Rows.FirstOrDefault();
+            if (nullOrRecord == null)
+                return null;
+
+            var user = nullOrRecord.Value;
 
             if (userIsOnline)
             {
@@ -678,11 +691,11 @@ namespace CouchDBMembershipProvider
         private MembershipUser UserToMembershipUser(User user)
         {
             var memUser = new MembershipUser(ProviderName, user.Username, user.Username, user.Email, user.PasswordQuestion, user.Comment, user.IsApproved, user.IsLockedOut
-                , user.DateCreated, 
-                user.DateLastLogin.HasValue ? user.DateLastLogin.Value : new DateTime(1900, 1, 1),
-                user.DateLastLogin.HasValue ? user.DateLastLogin.Value : new DateTime(1900, 1, 1),
-                user.LastPasswordChangedDate == null ? new DateTime(1900, 1, 1) : user.LastPasswordChangedDate,
-                user.LastLockedOutDate == null ? new DateTime(1900, 1, 1) : user.LastLockedOutDate);
+                , user.DateCreated,
+                user.DateLastLogin.HasValue ? user.DateLastLogin.Value : DateTime.MinValue,
+                user.LastActivityDate != null ? user.LastActivityDate : DateTime.MinValue,
+                user.LastPasswordChangedDate == null ? DateTime.MinValue : user.LastPasswordChangedDate,
+                user.LastLockedOutDate == null ? DateTime.MinValue : user.LastLockedOutDate);
             return memUser;
         }
 

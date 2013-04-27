@@ -63,7 +63,8 @@ namespace CouchDBMembershipProvider.Tests
                 DateLastLogin = DateTime.Now,
                 FailedPasswordAttempts = 0,
                 FullName = string.Format("Wilby Jackson {0}", UniqueId),
-                IsLockedOut = false
+                IsLockedOut = false,
+                LastActivityDate = DateTime.MinValue
             };
         }
 

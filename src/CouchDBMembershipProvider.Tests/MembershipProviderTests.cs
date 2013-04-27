@@ -48,22 +48,7 @@ namespace CouchDBMembershipProvider.Tests
 
         }
 
-        //[Test]
-        //public void CreateTestDB()
-        //{
-        //    var client = new Client("auth");
-        //    if (!client.DatabaseExists())
-        //        client.CreateDatabase();
-
-        //    var fakes = CreateMultipleUserFakes(500);
-
-        //    foreach (var fake in fakes)
-        //    {
-        //        client.SaveDocument<User>(fake);
-        //    }
-
-        //}
-
+      
         [Test]
         public void Test_GetUser_by_username()
         {
@@ -72,9 +57,19 @@ namespace CouchDBMembershipProvider.Tests
 
             var user = _provider.GetUser(fakeUser.Username, false);
 
+            //Did we get back the user we just saved to the database?
             Assert.IsNotNull(fakeUser);
             Assert.AreEqual(user.UserName, fakeUser.Username);
             Assert.AreEqual(user.Email, fakeUser.Email);
+            Assert.IsFalse(user.LastActivityDate > DateTime.Now.Subtract(new TimeSpan(0, 1, 0)));
+
+            //If we tell the provider we want to update the LastActivityDate does it actually happen?
+            user = _provider.GetUser(fakeUser.Username, true);
+            Assert.IsTrue(user.LastActivityDate > DateTime.Now.Subtract(new TimeSpan(0, 1, 0)));
+
+            //If we pass a username that doesn't exist does it return a null value, it should.
+            user = _provider.GetUser("NON_EXISTENT_USER", false);
+            Assert.IsNull(user);
         }
 
         [Test]
@@ -83,8 +78,9 @@ namespace CouchDBMembershipProvider.Tests
             var fakeUser = CreateUserFake();
             _Client.SaveDocument<User>(fakeUser);
 
-            var user = _provider.GetUser((object)fakeUser.Id, true);
-
+            var user = _provider.GetUser((object)fakeUser.Id, userIsOnline:true);
+            
+            //Did we get back the user we just saved to the database?
             Assert.IsNotNull(fakeUser);
             Assert.AreEqual(user.UserName, fakeUser.Username);
             Assert.AreEqual(user.Email, fakeUser.Email);
@@ -92,11 +88,14 @@ namespace CouchDBMembershipProvider.Tests
 
             var userView = _Client.GetView<User, User>(CouchViews.DESIGN_DOC_AUTH, CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME,
                new NameValueCollection() { { "key", string.Format("[\"{0}\",\"{1}\"]", user.UserName, "TestApp") } });
-            //Check db was updated            
-            Assert.IsTrue(userView.Rows[0].Value.LastActivityDate > DateTime.Now.Subtract(new TimeSpan(0, 1, 0)));
             
+            //Check db was updated with LastActivityDate            
+            Assert.IsTrue(userView.Rows[0].Value.LastActivityDate > DateTime.Now.Subtract(new TimeSpan(0, 1, 0)));
+
+            //If we pass a username that doesn't exist does it return a null value, it should.
             var user2 = _provider.GetUser((object)"FAKE_KEY", false);
             Assert.IsNull(user2);
+   
         }
 
         [Test]
@@ -112,16 +111,19 @@ namespace CouchDBMembershipProvider.Tests
                CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME,
                new NameValueCollection() { { "key", string.Format("[\"{0}\", \"{1}\"]", fakeUser.Username, _provider.ApplicationName) } });
 
+            //Did the new user get created?
             Assert.IsNotNull(user);
             Assert.IsNotNull(user.CreationDate);
             Assert.AreEqual(user.ProviderUserKey, fakeUser.Username);
             Assert.AreEqual(userView.Rows.FirstOrDefault().Value.Email, fakeUser.Email);
             Assert.AreEqual(MembershipCreateStatus.Success, status);
 
+            
             MembershipCreateStatus badPassStatus;
             var badPassUser = _provider.CreateUser(fakeUser.Username + "2", "shrtpas", "2" + fakeUser.Email, fakeUser.PasswordQuestion,
                 fakeUser.PasswordAnswer, fakeUser.IsApproved, fakeUser.Username, out badPassStatus);
-
+            
+            //We should fail because we passed in a password that was to short
             Assert.AreEqual(MembershipCreateStatus.InvalidPassword, badPassStatus);
         }
 
