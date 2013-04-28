@@ -264,6 +264,8 @@ namespace CouchDBProviders.Tests
         {
             var fakeUser = CreateUserFake();
             fakeUser.DateLastLogin = DateTime.Now.Subtract(new TimeSpan(0, 2, 0));
+            fakeUser.LastActivityDate = DateTime.Now;
+
             _Client.SaveDocument<User>(fakeUser);
 
             var totalUserOnline = _provider.GetNumberOfUsersOnline();

@@ -145,7 +145,7 @@
   <data name="byRoleAndAppName" xml:space="preserve">
     <value>function(doc) { 
 	if(doc.type == 'CouchDBProviders.Role') 
-		emit([doc.name, doc.applicationName]) 
+		emit([doc.name, doc.applicationName], doc) 
 }</value>
   </data>
   <data name="byUserNameAndAppName" xml:space="preserve">
@@ -167,10 +167,37 @@
 }</value>
     <comment>CouchDB view to select Users by username.</comment>
   </data>
+  <data name="byUserNamesWithRole" xml:space="preserve">
+    <value>function(doc) { 
+	if(doc.type == 'CouchDBProviders.User') 
+		for(var role in doc.roles)
+			emit([doc.roles[role], doc.applicationName], doc.username) 
+}</value>
+  </data>
+  <data name="byUserRoles" xml:space="preserve">
+    <value>function(doc) { 
+	if(doc.type == 'CouchDBProviders.User') 
+		for(var role in doc.roles)
+			emit([doc.roles[role], doc.username, doc.applicationName], doc.username) 
+}</value>
+  </data>
+  <data name="byUsersWithRoles" xml:space="preserve">
+    <value>function(doc) { 
+	if(doc.type == 'CouchDBProviders.User') 
+		for(var role in doc.roles)
+			emit([doc.roles[role],  doc.applicationName], doc) 
+}</value>
+  </data>
+  <data name="rolesByApplicationName" xml:space="preserve">
+    <value>function(doc) { 
+	if(doc.type == 'CouchDBProviders.Role') 
+		emit(doc.applicationName, doc.name) 
+}</value>
+  </data>
   <data name="userIsOnline" xml:space="preserve">
     <value>function(doc) { 
 	if(doc.type == 'CouchDBProviders.User') 
-		emit([doc.dateLastLogin, doc.applicationName], 1) 
+		emit([doc.lastActivityDate, doc.applicationName], 1) 
 }</value>
   </data>
   <data name="userIsOnlineReduce" xml:space="preserve">

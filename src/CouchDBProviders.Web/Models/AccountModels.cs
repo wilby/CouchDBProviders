@@ -199,7 +199,7 @@ namespace CouchDBProviders.Web.Models
 	public class AccountMembershipService : IMembershipService
 	{
 		private readonly CouchDBProviders.MembershipProvider _provider;
-		private readonly RoleProvider _roleProvider;
+		private readonly CouchDBProviders.RoleProvider _roleProvider;
 
 		public AccountMembershipService() : this(null, null)
 		{
@@ -208,7 +208,7 @@ namespace CouchDBProviders.Web.Models
 		public AccountMembershipService(MembershipProvider provider, RoleProvider roleProvider)
 		{
             _provider = (CouchDBProviders.MembershipProvider)(provider ?? Membership.Provider);
-			//_roleProvider = roleProvider ?? Roles.Provider;
+            _roleProvider = (CouchDBProviders.RoleProvider)(roleProvider ?? Roles.Provider);
 		}
 
 		public int MinPasswordLength

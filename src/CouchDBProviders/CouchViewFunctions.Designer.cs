@@ -111,7 +111,7 @@ namespace CouchDBProviders {
         /// <summary>
         ///   Looks up a localized string similar to function(doc) { 
         ///	if(doc.type == &apos;CouchDBProviders.Role&apos;) 
-        ///		emit([doc.name, doc.applicationName]) 
+        ///		emit([doc.name, doc.applicationName], doc) 
         ///}.
         /// </summary>
         internal static string byRoleAndAppName {
@@ -159,7 +159,58 @@ namespace CouchDBProviders {
         /// <summary>
         ///   Looks up a localized string similar to function(doc) { 
         ///	if(doc.type == &apos;CouchDBProviders.User&apos;) 
-        ///		emit([doc.dateLastLogin, doc.applicationName], 1) 
+        ///		for(var role in doc.roles)
+        ///			emit([doc.roles[role], doc.applicationName], doc.username) 
+        ///}.
+        /// </summary>
+        internal static string byUserNamesWithRole {
+            get {
+                return ResourceManager.GetString("byUserNamesWithRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to function(doc) { 
+        ///	if(doc.type == &apos;CouchDBProviders.User&apos;) 
+        ///		for(var role in doc.roles)
+        ///			emit([doc.roles[role], doc.username, doc.applicationName], doc.username) 
+        ///}.
+        /// </summary>
+        internal static string byUserRoles {
+            get {
+                return ResourceManager.GetString("byUserRoles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to function(doc) { 
+        ///	if(doc.type == &apos;CouchDBProviders.User&apos;) 
+        ///		for(var role in doc.roles)
+        ///			emit([doc.roles[role],  doc.applicationName], doc) 
+        ///}.
+        /// </summary>
+        internal static string byUsersWithRoles {
+            get {
+                return ResourceManager.GetString("byUsersWithRoles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to function(doc) { 
+        ///	if(doc.type == &apos;CouchDBProviders.Role&apos;) 
+        ///		emit(doc.applicationName, doc.name) 
+        ///}.
+        /// </summary>
+        internal static string rolesByApplicationName {
+            get {
+                return ResourceManager.GetString("rolesByApplicationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to function(doc) { 
+        ///	if(doc.type == &apos;CouchDBProviders.User&apos;) 
+        ///		emit([doc.lastActivityDate, doc.applicationName], 1) 
         ///}.
         /// </summary>
         internal static string userIsOnline {

@@ -443,11 +443,11 @@ namespace CouchDBProviders
         public override int GetNumberOfUsersOnline()
         {            
             var oldestOnlineTime = DateTime.Now.Subtract(new TimeSpan(0, Membership.UserIsOnlineTimeWindow, 0));
-            var userView = _Client.GetView<string, User>(
+            var userView = _Client.GetView<int, User>(
                  CouchViews.DESIGN_DOC_AUTH,
                  CouchViews.MEMVIEW_USERS_ONLINE,
-                 new NameValueCollection() { { "startkey", string.Format(_twoKeyViewDateFirstFormatString, JsonConvert.SerializeObject(oldestOnlineTime, new IsoDateTimeConverter()) , ApplicationName) },
-                     { "endkey", string.Format(_twoKeyViewDateFirstFormatString, JsonConvert.SerializeObject(DateTime.Now, new IsoDateTimeConverter()) , ApplicationName) }                     
+                 new NameValueCollection() { { "startkey", string.Format(_twoKeyViewDateFirstFormatString, JsonConvert.SerializeObject(oldestOnlineTime) , ApplicationName) },
+                     { "endkey", string.Format(_twoKeyViewDateFirstFormatString, JsonConvert.SerializeObject(DateTime.Now) , ApplicationName) }                     
                 });
 
             return userView.Rows.Count();
