@@ -110,6 +110,18 @@ namespace CouchDBProviders {
         
         /// <summary>
         ///   Looks up a localized string similar to function(doc) { 
+        ///	if(doc.type == &apos;CouchDBProviders.Role&apos;) 
+        ///		emit([doc.name, doc.applicationName]) 
+        ///}.
+        /// </summary>
+        internal static string byRoleAndAppName {
+            get {
+                return ResourceManager.GetString("byRoleAndAppName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to function(doc) { 
         ///	if(doc.type == &apos;CouchDBProviders.User&apos;) 
         ///		emit([doc.username, doc.applicationName], doc) 
         ///}.

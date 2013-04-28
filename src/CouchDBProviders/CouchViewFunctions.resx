@@ -142,6 +142,12 @@
 		emit([doc.email,doc.applicationName], doc.username) 
 }</value>
   </data>
+  <data name="byRoleAndAppName" xml:space="preserve">
+    <value>function(doc) { 
+	if(doc.type == 'CouchDBProviders.Role') 
+		emit([doc.name, doc.applicationName]) 
+}</value>
+  </data>
   <data name="byUserNameAndAppName" xml:space="preserve">
     <value>function(doc) { 
 	if(doc.type == 'CouchDBProviders.User') 

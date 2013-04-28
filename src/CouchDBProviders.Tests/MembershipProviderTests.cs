@@ -87,7 +87,7 @@ namespace CouchDBProviders.Tests
             Assert.AreEqual(user.Email, fakeUser.Email);
             Assert.IsTrue(user.IsOnline);
 
-            var userView = _Client.GetView<User, User>(CouchViews.DESIGN_DOC_AUTH, CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME,
+            var userView = _Client.GetView<User, User>(CouchViews.DESIGN_DOC_AUTH, CouchViews.MEMVIEW_BY_USERNAME_AND_APPNAME,
                new NameValueCollection() { { "key", string.Format("[\"{0}\",\"{1}\"]", user.UserName, "TestApp") } });
             
             //Check db was updated with LastActivityDate            
@@ -109,7 +109,7 @@ namespace CouchDBProviders.Tests
 
             var userView = _Client.GetView<User, CouchDocument>(
                CouchViews.DESIGN_DOC_AUTH,
-               CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME,
+               CouchViews.MEMVIEW_BY_USERNAME_AND_APPNAME,
                new NameValueCollection() { { "key", string.Format("[\"{0}\", \"{1}\"]", fakeUser.Username, _provider.ApplicationName) } });
 
             //Did the new user get created?
@@ -355,7 +355,7 @@ namespace CouchDBProviders.Tests
 
             var pass = _provider.ResetPassword(fake.Username, fake.PasswordAnswer);
 
-             var userView = _Client.GetView<User, User>(CouchViews.DESIGN_DOC_AUTH, CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME,
+             var userView = _Client.GetView<User, User>(CouchViews.DESIGN_DOC_AUTH, CouchViews.MEMVIEW_BY_USERNAME_AND_APPNAME,
               new NameValueCollection() { { "key", string.Format("[\"{0}\",\"{1}\"]", fake.Username, "TestApp") } });
             var user = userView.Rows[0].Value;
             Assert.AreNotEqual(fake.PasswordHash, PasswordUtil.HashPassword(pass, user.PasswordSalt, "SHA1", null));
@@ -373,7 +373,7 @@ namespace CouchDBProviders.Tests
             
             var unlocked = _provider.UnlockUser(fake.Username);
 
-            var userView = _Client.GetView<User, User>(CouchViews.DESIGN_DOC_AUTH, CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME,
+            var userView = _Client.GetView<User, User>(CouchViews.DESIGN_DOC_AUTH, CouchViews.MEMVIEW_BY_USERNAME_AND_APPNAME,
               new NameValueCollection() { { "key", string.Format("[\"{0}\",\"{1}\"]", fake.Username, "TestApp") } });
             var user = userView.Rows[0].Value;
 

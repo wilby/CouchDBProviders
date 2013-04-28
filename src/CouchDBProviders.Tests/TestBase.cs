@@ -45,6 +45,17 @@ namespace CouchDBProviders.Tests
             return config;
         }
 
+        protected static NameValueCollection GetRoleConfigFake()
+        {
+
+            NameValueCollection config = new NameValueCollection();
+            config.Add("applicationName", "TestApp");
+            config.Add("connectionStringName", "Server");
+            config.Add("proxyConnectionStringName", "");           
+
+            return config;
+        }
+
         protected User CreateUserFake()
         {            
             var salt = PasswordUtil.CreateRandomSalt();

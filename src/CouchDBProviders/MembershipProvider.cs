@@ -211,7 +211,7 @@ namespace CouchDBProviders
 
                 var userView = _Client.GetView<User, CouchDocument>(
                     CouchViews.DESIGN_DOC_AUTH,
-                    CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME,
+                    CouchViews.MEMVIEW_BY_USERNAME_AND_APPNAME,
                     new NameValueCollection() { { "key", string.Format(_twoKeyViewFormatString, username, ApplicationName) } });
 
                 if (!userView.HasRows)
@@ -246,7 +246,7 @@ namespace CouchDBProviders
 
                 var userView = _Client.GetView<User, CouchDocument>(
                        CouchViews.DESIGN_DOC_AUTH,
-                       CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME,
+                       CouchViews.MEMVIEW_BY_USERNAME_AND_APPNAME,
                        new NameValueCollection() { { "key", string.Format(_twoKeyViewFormatString, username, ApplicationName) } });
 
                 if (validated && userView.HasRows)
@@ -273,7 +273,7 @@ namespace CouchDBProviders
             var exists = false;
             var existsView = _Client.GetView<bool, CouchDocument>(
                 CouchViews.DESIGN_DOC_AUTH,
-                CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME_EXISTS,
+                CouchViews.MEMVIEW_BY_USERNAME_AND_APPNAME_EXISTS,
                 new NameValueCollection() { { "key", string.Format(_twoKeyViewFormatString, username, ApplicationName) } });
 
             if (existsView.Rows.Count() == 1)
@@ -318,7 +318,7 @@ namespace CouchDBProviders
             {       
                 var existingUser = _Client.GetView<string, CouchDocument>(
                 CouchViews.DESIGN_DOC_AUTH,
-                CouchViews.AUTH_VIEW_NAME_BY_Email_AND_APPNAME,
+                CouchViews.MEMVIEW_BY_Email_AND_APPNAME,
                 new NameValueCollection() { {"key", string.Format(_twoKeyViewFormatString, email, ApplicationName) } });                        
 
                 if (existingUser.Rows.Count() > 0)
@@ -342,7 +342,7 @@ namespace CouchDBProviders
         /// <returns></returns>
         public override bool DeleteUser(string username, bool deleteAllRelatedData)
         {
-            var userView = _Client.GetView<User, User>(CouchViews.DESIGN_DOC_AUTH, CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME, 
+            var userView = _Client.GetView<User, User>(CouchViews.DESIGN_DOC_AUTH, CouchViews.MEMVIEW_BY_USERNAME_AND_APPNAME, 
                 new NameValueCollection() { {"key", string.Format(_twoKeyViewFormatString,username, ApplicationName) } });
 
             if (userView.Rows.Count() == 0)            
@@ -374,7 +374,7 @@ namespace CouchDBProviders
         /// <returns>MembershipUserCollection</returns>
         public override MembershipUserCollection FindUsersByEmail(string emailToMatch, int pageIndex, int pageSize, out int totalRecords)
         {
-            return FindUsersBy(emailToMatch, CouchViews.AUTH_VIEW_NAME_BY_Email_AND_APPNAME, pageIndex, pageSize, out totalRecords);
+            return FindUsersBy(emailToMatch, CouchViews.MEMVIEW_BY_Email_AND_APPNAME, pageIndex, pageSize, out totalRecords);
         }
 
         /// <summary>
@@ -390,7 +390,7 @@ namespace CouchDBProviders
         /// <returns>MembershipUserCollection</returns>
         public override MembershipUserCollection FindUsersByName(string usernameToMatch, int pageIndex, int pageSize, out int totalRecords)
         {
-            return FindUsersBy(usernameToMatch, CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME, pageIndex, pageSize, out totalRecords);
+            return FindUsersBy(usernameToMatch, CouchViews.MEMVIEW_BY_USERNAME_AND_APPNAME, pageIndex, pageSize, out totalRecords);
         }
 
         private MembershipUserCollection FindUsersBy(string nameOrEmailToMatch, string authViewName, int pageIndex, int pageSize, out int totalRecords)
@@ -421,7 +421,7 @@ namespace CouchDBProviders
         {
             var userView = _Client.GetView<User, User>(
                 CouchViews.DESIGN_DOC_AUTH,
-                CouchViews.AUTH_VIEW_NAME_ALL_USERS_FOR_APP,
+                CouchViews.MEMVIEW_ALL_USERS_FOR_APP,
                 new NameValueCollection() { { "key", string.Format("\"{0}\"", ApplicationName) },
                 {"limit", pageSize.ToString() }, {"skip", (pageSize * pageIndex).ToString() }});
 
@@ -445,7 +445,7 @@ namespace CouchDBProviders
             var oldestOnlineTime = DateTime.Now.Subtract(new TimeSpan(0, Membership.UserIsOnlineTimeWindow, 0));
             var userView = _Client.GetView<string, User>(
                  CouchViews.DESIGN_DOC_AUTH,
-                 CouchViews.AUTH_VIEW_USERS_ONLINE,
+                 CouchViews.MEMVIEW_USERS_ONLINE,
                  new NameValueCollection() { { "startkey", string.Format(_twoKeyViewDateFirstFormatString, JsonConvert.SerializeObject(oldestOnlineTime, new IsoDateTimeConverter()) , ApplicationName) },
                      { "endkey", string.Format(_twoKeyViewDateFirstFormatString, JsonConvert.SerializeObject(DateTime.Now, new IsoDateTimeConverter()) , ApplicationName) }                     
                 });
@@ -458,7 +458,7 @@ namespace CouchDBProviders
             if (!EnablePasswordRetrieval)
                 throw new ProviderException("Retrieving passwords is not enabled.");
 
-            var userView = _Client.GetView<User, User>(CouchViews.DESIGN_DOC_AUTH, CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME,
+            var userView = _Client.GetView<User, User>(CouchViews.DESIGN_DOC_AUTH, CouchViews.MEMVIEW_BY_USERNAME_AND_APPNAME,
                 new NameValueCollection() { { "key", string.Format(_twoKeyViewFormatString, username, ApplicationName) } });
 
             var user = userView.Rows[0].Value;
@@ -510,7 +510,7 @@ namespace CouchDBProviders
 
         public override string GetUserNameByEmail(string email)
         {
-            var userView = _Client.GetView<string, string>(CouchViews.DESIGN_DOC_AUTH, CouchViews.AUTH_VIEW_NAME_BY_EMAIL_AND_APPNAME_VALUE_IS_USERNAME_ONLY,
+            var userView = _Client.GetView<string, string>(CouchViews.DESIGN_DOC_AUTH, CouchViews.MEMVIEW_BY_EMAIL_AND_APPNAME_VALUE_IS_USERNAME_ONLY,
               new NameValueCollection() { { "key", string.Format(_twoKeyViewFormatString, email, ApplicationName) } });
 
             string username = "";
@@ -524,7 +524,7 @@ namespace CouchDBProviders
             if (!EnablePasswordReset)
                 throw new NotSupportedException("Password resets are not enabled.");
 
-            var userView = _Client.GetView<User, User>(CouchViews.DESIGN_DOC_AUTH, CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME,
+            var userView = _Client.GetView<User, User>(CouchViews.DESIGN_DOC_AUTH, CouchViews.MEMVIEW_BY_USERNAME_AND_APPNAME,
               new NameValueCollection() { { "key", string.Format(_twoKeyViewFormatString, username, ApplicationName) } });
                         
             var user = userView.Rows[0].Value;
@@ -552,7 +552,7 @@ namespace CouchDBProviders
         public override bool UnlockUser(string userName)
         {
             try {
-                var userView = _Client.GetView<User, User>(CouchViews.DESIGN_DOC_AUTH, CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME,
+                var userView = _Client.GetView<User, User>(CouchViews.DESIGN_DOC_AUTH, CouchViews.MEMVIEW_BY_USERNAME_AND_APPNAME,
                  new NameValueCollection() { { "key", string.Format(_twoKeyViewFormatString, userName, ApplicationName) } });
 
                 if(!userView.HasRows)
@@ -575,7 +575,7 @@ namespace CouchDBProviders
         {
             var userView = _Client.GetView<User,CouchDocument>(
                 CouchViews.DESIGN_DOC_AUTH,
-                CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME,
+                CouchViews.MEMVIEW_BY_USERNAME_AND_APPNAME,
                 new NameValueCollection() { { "key", string.Format(_twoKeyViewFormatString, user.UserName, ApplicationName) } });
 
             if(userView.Rows.Count() == 0)
@@ -601,7 +601,7 @@ namespace CouchDBProviders
 
             var userView = _Client.GetView<User, CouchDocument>(
                 CouchViews.DESIGN_DOC_AUTH,
-                CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME,
+                CouchViews.MEMVIEW_BY_USERNAME_AND_APPNAME,
                 new NameValueCollection() { { "key", string.Format(_twoKeyViewFormatString, username, ApplicationName) } });
 
             if(userView.Rows.Count() == 0)
@@ -668,7 +668,7 @@ namespace CouchDBProviders
 
             var userView = _Client.GetView<User, CouchDocument>(
                 CouchViews.DESIGN_DOC_AUTH,
-                CouchViews.AUTH_VIEW_NAME_BY_USERNAME_AND_APPNAME,
+                CouchViews.MEMVIEW_BY_USERNAME_AND_APPNAME,
                 new NameValueCollection() { { "key", string.Format(_twoKeyViewFormatString, username, ApplicationName) } });
 
             if (userView.Rows.Count() > 1)
