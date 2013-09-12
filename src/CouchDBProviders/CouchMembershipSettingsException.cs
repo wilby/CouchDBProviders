@@ -7,8 +7,7 @@ namespace CouchDBProviders
 {
     public class CouchMembershipSettingsException : Exception
     {
-        public CouchMembershipSettingsException() : base("There was an error in CouchDBProviders Settings.") 
-        {}
+        public CouchMembershipSettingsException() : base("There was an error in CouchDBProviders Settings.") {}
 
         public CouchMembershipSettingsException(string message) : base(message) { }
 

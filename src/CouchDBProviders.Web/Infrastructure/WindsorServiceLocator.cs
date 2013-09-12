@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Castle.Windsor;
-using Microsoft.Practices.ServiceLocation;
 
 namespace CouchDBProviders.Web.Infrastructure
 {
@@ -9,7 +8,7 @@ namespace CouchDBProviders.Web.Infrastructure
 	/// Adapts the behavior of the Windsor container to the common
 	/// IServiceLocator
 	/// </summary>
-	public class WindsorServiceLocator : ServiceLocatorImplBase
+	public class WindsorServiceLocator : Microsoft.Practices.ServiceLocation.ServiceLocatorImplBase
 	{
 		private readonly IWindsorContainer container;
 

@@ -1,0 +1,1428 @@
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName?key=%5b%22wilby92%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":16,"offset":15,"rows":[
+{"id":"57c3bdcf06287b88e9c10a3042017bab","key":["wilby92","TestApp"],"value":{"_id":"57c3bdcf06287b88e9c10a3042017bab","_rev":"1-8a6fbf3def09b1620e53bbf1d9095eec","attachments":{},"applicationName":"TestApp","username":"wilby92","passwordHash":"jdbaH6FmlWV2k3WloUPy6hPMhJs=","passwordSalt":"UPnnJg==","fullName":"Wilby Jackson 94","email":"wilby93@wcjj.net","dateCreated":"2013-09-11T10:37:37.6613567-04:00","dateLastLogin":"2013-09-11T10:37:37.6613567-04:00","roles":[],"passwordQuestion":"A QUESTION","passwordAnswer":"A ANSWER","isLockedOut":false,"failedPasswordAttempts":0,"failedPasswordAnswerAttempts":0,"lastFailedPasswordAttempt":"0001-01-01T00:00:00","comment":"A FAKE USER","isApproved":true,"lastActivityDate":"0001-01-01T00:00:00","lastPasswordChangedDate":"0001-01-01T00:00:00","lastLockedOutDate":"0001-01-01T00:00:00","type":"CouchDBProviders.User"}}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName?key=%5b%22wilby92%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":16,"offset":15,"rows":[
+{"id":"57c3bdcf06287b88e9c10a3042017bab","key":["wilby92","TestApp"],"value":{"_id":"57c3bdcf06287b88e9c10a3042017bab","_rev":"1-8a6fbf3def09b1620e53bbf1d9095eec","attachments":{},"applicationName":"TestApp","username":"wilby92","passwordHash":"jdbaH6FmlWV2k3WloUPy6hPMhJs=","passwordSalt":"UPnnJg==","fullName":"Wilby Jackson 94","email":"wilby93@wcjj.net","dateCreated":"2013-09-11T10:37:37.6613567-04:00","dateLastLogin":"2013-09-11T10:37:37.6613567-04:00","roles":[],"passwordQuestion":"A QUESTION","passwordAnswer":"A ANSWER","isLockedOut":false,"failedPasswordAttempts":0,"failedPasswordAnswerAttempts":0,"lastFailedPasswordAttempt":"0001-01-01T00:00:00","comment":"A FAKE USER","isApproved":true,"lastActivityDate":"0001-01-01T00:00:00","lastPasswordChangedDate":"0001-01-01T00:00:00","lastLockedOutDate":"0001-01-01T00:00:00","type":"CouchDBProviders.User"}}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: PUT Uri: http://localhost:5984/membershiptest/57c3bdcf06287b88e9c10a3042017bab
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby92",
+  "passwordHash": "jdbaH6FmlWV2k3WloUPy6hPMhJs=",
+  "passwordSalt": "UPnnJg==",
+  "fullName": "Wilby Jackson 94",
+  "email": "wilby93@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:37.6613567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:37.6613567-04:00",
+  "roles": [],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": false,
+  "failedPasswordAttempts": 0,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "0001-01-01T00:00:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "2013-09-11T10:37:37.7273567-04:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "_id": "57c3bdcf06287b88e9c10a3042017bab",
+  "_rev": "1-8a6fbf3def09b1620e53bbf1d9095eec",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName?key=%5b%22NON_EXISTENT_USER%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":16,"offset":0,"rows":[
+
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby95",
+  "passwordHash": "A5jAwRdCgzHpCwJXWomTVM7JGHQ=",
+  "passwordSalt": "7Y42Hw==",
+  "fullName": "Wilby Jackson 97",
+  "email": "wilby96@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:37.7503567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:37.7503567-04:00",
+  "roles": [],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": false,
+  "failedPasswordAttempts": 0,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "0001-01-01T00:00:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byEmailAndAppNameValueIsUsernameOnly
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byEmailAndAppNameValueIsUsernameOnly?key=%5b%22wilby96%40wcjj.net%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":17,"offset":16,"rows":[
+{"id":"57c3bdcf06287b88e9c10a3042018874","key":["wilby96@wcjj.net","TestApp"],"value":"wilby95"}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byEmailAndAppNameValueIsUsernameOnly
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byEmailAndAppNameValueIsUsernameOnly?key=%5b%22FAKE_EMAIL%40FAKEMAIL.COM%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":17,"offset":0,"rows":[
+
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby98",
+  "passwordHash": "D14JbgNSiUKq/gIrVY9k+638tys=",
+  "passwordSalt": "iTW7Jg==",
+  "fullName": "Wilby Jackson 100",
+  "email": "wilby99@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:37.7823567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:37.7823567-04:00",
+  "roles": [],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": false,
+  "failedPasswordAttempts": 0,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "0001-01-01T00:00:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName?key=%5b%22wilby98%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":18,"offset":17,"rows":[
+{"id":"57c3bdcf06287b88e9c10a304201939b","key":["wilby98","TestApp"],"value":{"_id":"57c3bdcf06287b88e9c10a304201939b","_rev":"1-1392270f2b5a5a8d46268c00c18cc215","attachments":{},"applicationName":"TestApp","username":"wilby98","passwordHash":"D14JbgNSiUKq/gIrVY9k+638tys=","passwordSalt":"iTW7Jg==","fullName":"Wilby Jackson 100","email":"wilby99@wcjj.net","dateCreated":"2013-09-11T10:37:37.7823567-04:00","dateLastLogin":"2013-09-11T10:37:37.7823567-04:00","roles":[],"passwordQuestion":"A QUESTION","passwordAnswer":"A ANSWER","isLockedOut":false,"failedPasswordAttempts":0,"failedPasswordAnswerAttempts":0,"lastFailedPasswordAttempt":"0001-01-01T00:00:00","comment":"A FAKE USER","isApproved":true,"lastActivityDate":"0001-01-01T00:00:00","lastPasswordChangedDate":"0001-01-01T00:00:00","lastLockedOutDate":"0001-01-01T00:00:00","type":"CouchDBProviders.User"}}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: PUT Uri: http://localhost:5984/membershiptest/57c3bdcf06287b88e9c10a304201939b
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby98",
+  "passwordHash": "VOAUA/txwmqKnGVEp+0veWRXfAE=",
+  "passwordSalt": "+34Vxg==",
+  "fullName": "Wilby Jackson 100",
+  "email": "wilby99@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:37.7823567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:37.7823567-04:00",
+  "roles": [],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": false,
+  "failedPasswordAttempts": 0,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "0001-01-01T00:00:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "2013-09-11T10:37:37.8053567-04:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "_id": "57c3bdcf06287b88e9c10a304201939b",
+  "_rev": "1-1392270f2b5a5a8d46268c00c18cc215",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName?key=%5b%22wilby98%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":18,"offset":17,"rows":[
+{"id":"57c3bdcf06287b88e9c10a304201939b","key":["wilby98","TestApp"],"value":{"_id":"57c3bdcf06287b88e9c10a304201939b","_rev":"2-bbe54249284b3ea05aff719184a05999","attachments":{},"applicationName":"TestApp","username":"wilby98","passwordHash":"VOAUA/txwmqKnGVEp+0veWRXfAE=","passwordSalt":"+34Vxg==","fullName":"Wilby Jackson 100","email":"wilby99@wcjj.net","dateCreated":"2013-09-11T10:37:37.7823567-04:00","dateLastLogin":"2013-09-11T10:37:37.7823567-04:00","roles":[],"passwordQuestion":"A QUESTION","passwordAnswer":"A ANSWER","isLockedOut":false,"failedPasswordAttempts":0,"failedPasswordAnswerAttempts":0,"lastFailedPasswordAttempt":"0001-01-01T00:00:00","comment":"A FAKE USER","isApproved":true,"lastActivityDate":"0001-01-01T00:00:00","lastPasswordChangedDate":"2013-09-11T10:37:37.8053567-04:00","lastLockedOutDate":"0001-01-01T00:00:00","type":"CouchDBProviders.User"}}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - DatabaseExists URI: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - DocumentExists Uri: http://localhost:5984/membershiptest/_design/auth
+INFO TestRunnerThread Wcjj.CouchClient.Client - DocumentExists True
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby101",
+  "passwordHash": "np6hL09oNHCg6y2PjsSroaq+7og=",
+  "passwordSalt": "P9c1Zg==",
+  "fullName": "Wilby Jackson 103",
+  "email": "wilby102@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:37.8573567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:37.8573567-04:00",
+  "roles": [],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": false,
+  "failedPasswordAttempts": 0,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "0001-01-01T00:00:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName?key=%5b%22wilby101%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":19,"offset":0,"rows":[
+{"id":"57c3bdcf06287b88e9c10a3042019828","key":["wilby101","TestApp"],"value":{"_id":"57c3bdcf06287b88e9c10a3042019828","_rev":"1-24fa0fa0ed2042b7b5a497023491602d","attachments":{},"applicationName":"TestApp","username":"wilby101","passwordHash":"np6hL09oNHCg6y2PjsSroaq+7og=","passwordSalt":"P9c1Zg==","fullName":"Wilby Jackson 103","email":"wilby102@wcjj.net","dateCreated":"2013-09-11T10:37:37.8573567-04:00","dateLastLogin":"2013-09-11T10:37:37.8573567-04:00","roles":[],"passwordQuestion":"A QUESTION","passwordAnswer":"A ANSWER","isLockedOut":false,"failedPasswordAttempts":0,"failedPasswordAnswerAttempts":0,"lastFailedPasswordAttempt":"0001-01-01T00:00:00","comment":"A FAKE USER","isApproved":true,"lastActivityDate":"0001-01-01T00:00:00","lastPasswordChangedDate":"0001-01-01T00:00:00","lastLockedOutDate":"0001-01-01T00:00:00","type":"CouchDBProviders.User"}}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby104",
+  "passwordHash": "JiKWeytlyt+u57ifk4JfVJ2YtMY=",
+  "passwordSalt": "nd4qtA==",
+  "fullName": "Wilby Jackson 106",
+  "email": "wilby105@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:37.8843567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:37.8843567-04:00",
+  "roles": [],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": true,
+  "failedPasswordAttempts": 0,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "0001-01-01T00:00:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName?key=%5b%22wilby104%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":20,"offset":1,"rows":[
+{"id":"57c3bdcf06287b88e9c10a3042019b02","key":["wilby104","TestApp"],"value":{"_id":"57c3bdcf06287b88e9c10a3042019b02","_rev":"1-2a8fc703751a256d7edf4bc478d00e62","attachments":{},"applicationName":"TestApp","username":"wilby104","passwordHash":"JiKWeytlyt+u57ifk4JfVJ2YtMY=","passwordSalt":"nd4qtA==","fullName":"Wilby Jackson 106","email":"wilby105@wcjj.net","dateCreated":"2013-09-11T10:37:37.8843567-04:00","dateLastLogin":"2013-09-11T10:37:37.8843567-04:00","roles":[],"passwordQuestion":"A QUESTION","passwordAnswer":"A ANSWER","isLockedOut":true,"failedPasswordAttempts":0,"failedPasswordAnswerAttempts":0,"lastFailedPasswordAttempt":"0001-01-01T00:00:00","comment":"A FAKE USER","isApproved":true,"lastActivityDate":"0001-01-01T00:00:00","lastPasswordChangedDate":"0001-01-01T00:00:00","lastLockedOutDate":"0001-01-01T00:00:00","type":"CouchDBProviders.User"}}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: PUT Uri: http://localhost:5984/membershiptest/57c3bdcf06287b88e9c10a3042019b02
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby104",
+  "passwordHash": "JiKWeytlyt+u57ifk4JfVJ2YtMY=",
+  "passwordSalt": "nd4qtA==",
+  "fullName": "Wilby Jackson 106",
+  "email": "wilby105@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:37.8843567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:37.8843567-04:00",
+  "roles": [],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": false,
+  "failedPasswordAttempts": 0,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "0001-01-01T00:00:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "2013-09-11T10:37:37.9123567-04:00",
+  "_id": "57c3bdcf06287b88e9c10a3042019b02",
+  "_rev": "1-2a8fc703751a256d7edf4bc478d00e62",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName?key=%5b%22wilby104%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":20,"offset":1,"rows":[
+{"id":"57c3bdcf06287b88e9c10a3042019b02","key":["wilby104","TestApp"],"value":{"_id":"57c3bdcf06287b88e9c10a3042019b02","_rev":"2-3e6df8a6c2cd7d869d6260c60b35ccf7","attachments":{},"applicationName":"TestApp","username":"wilby104","passwordHash":"JiKWeytlyt+u57ifk4JfVJ2YtMY=","passwordSalt":"nd4qtA==","fullName":"Wilby Jackson 106","email":"wilby105@wcjj.net","dateCreated":"2013-09-11T10:37:37.8843567-04:00","dateLastLogin":"2013-09-11T10:37:37.8843567-04:00","roles":[],"passwordQuestion":"A QUESTION","passwordAnswer":"A ANSWER","isLockedOut":false,"failedPasswordAttempts":0,"failedPasswordAnswerAttempts":0,"lastFailedPasswordAttempt":"0001-01-01T00:00:00","comment":"A FAKE USER","isApproved":true,"lastActivityDate":"0001-01-01T00:00:00","lastPasswordChangedDate":"0001-01-01T00:00:00","lastLockedOutDate":"2013-09-11T10:37:37.9123567-04:00","type":"CouchDBProviders.User"}}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby107",
+  "passwordHash": "w6ux0WBTF1ZazkeKUuvaZGIgdtE=",
+  "passwordSalt": "EwiHPg==",
+  "fullName": "Wilby Jackson 109",
+  "email": "wilby108@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:37.9313567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:37.9313567-04:00",
+  "roles": [],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": false,
+  "failedPasswordAttempts": 0,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "0001-01-01T00:00:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName?key=%5b%22wilby107%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":21,"offset":2,"rows":[
+{"id":"57c3bdcf06287b88e9c10a3042019ece","key":["wilby107","TestApp"],"value":{"_id":"57c3bdcf06287b88e9c10a3042019ece","_rev":"1-0e6fd959c386a59d5ff20fcc9460eecf","attachments":{},"applicationName":"TestApp","username":"wilby107","passwordHash":"w6ux0WBTF1ZazkeKUuvaZGIgdtE=","passwordSalt":"EwiHPg==","fullName":"Wilby Jackson 109","email":"wilby108@wcjj.net","dateCreated":"2013-09-11T10:37:37.9313567-04:00","dateLastLogin":"2013-09-11T10:37:37.9313567-04:00","roles":[],"passwordQuestion":"A QUESTION","passwordAnswer":"A ANSWER","isLockedOut":false,"failedPasswordAttempts":0,"failedPasswordAnswerAttempts":0,"lastFailedPasswordAttempt":"0001-01-01T00:00:00","comment":"A FAKE USER","isApproved":true,"lastActivityDate":"0001-01-01T00:00:00","lastPasswordChangedDate":"0001-01-01T00:00:00","lastLockedOutDate":"0001-01-01T00:00:00","type":"CouchDBProviders.User"}}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName?key=%5b%22wilby107%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":21,"offset":2,"rows":[
+{"id":"57c3bdcf06287b88e9c10a3042019ece","key":["wilby107","TestApp"],"value":{"_id":"57c3bdcf06287b88e9c10a3042019ece","_rev":"1-0e6fd959c386a59d5ff20fcc9460eecf","attachments":{},"applicationName":"TestApp","username":"wilby107","passwordHash":"w6ux0WBTF1ZazkeKUuvaZGIgdtE=","passwordSalt":"EwiHPg==","fullName":"Wilby Jackson 109","email":"wilby108@wcjj.net","dateCreated":"2013-09-11T10:37:37.9313567-04:00","dateLastLogin":"2013-09-11T10:37:37.9313567-04:00","roles":[],"passwordQuestion":"A QUESTION","passwordAnswer":"A ANSWER","isLockedOut":false,"failedPasswordAttempts":0,"failedPasswordAnswerAttempts":0,"lastFailedPasswordAttempt":"0001-01-01T00:00:00","comment":"A FAKE USER","isApproved":true,"lastActivityDate":"0001-01-01T00:00:00","lastPasswordChangedDate":"0001-01-01T00:00:00","lastLockedOutDate":"0001-01-01T00:00:00","type":"CouchDBProviders.User"}}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: PUT Uri: http://localhost:5984/membershiptest/57c3bdcf06287b88e9c10a3042019ece
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby107",
+  "passwordHash": "w6ux0WBTF1ZazkeKUuvaZGIgdtE=",
+  "passwordSalt": "EwiHPg==",
+  "fullName": "Wilby Jackson 109",
+  "email": "wilby108@wcjj.netTest_UpdateUser",
+  "dateCreated": "2013-09-11T10:37:37.9313567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:37.9313567-04:00",
+  "roles": [],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": false,
+  "failedPasswordAttempts": 0,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "0001-01-01T00:00:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "_id": "57c3bdcf06287b88e9c10a3042019ece",
+  "_rev": "1-0e6fd959c386a59d5ff20fcc9460eecf",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetDocument Uri: 
+INFO TestRunnerThread Wcjj.CouchClient.Client - Document Retrieved: 
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetDocument<T> Type: CouchDBProviders.User Json: {"_id":"57c3bdcf06287b88e9c10a3042019ece","_rev":"2-26f5b1e0e7f0c15c1c3a9d34eea92063","attachments":{},"applicationName":"TestApp","username":"wilby107","passwordHash":"w6ux0WBTF1ZazkeKUuvaZGIgdtE=","passwordSalt":"EwiHPg==","fullName":"Wilby Jackson 109","email":"wilby108@wcjj.netTest_UpdateUser","dateCreated":"2013-09-11T10:37:37.9313567-04:00","dateLastLogin":"2013-09-11T10:37:37.9313567-04:00","roles":[],"passwordQuestion":"A QUESTION","passwordAnswer":"A ANSWER","isLockedOut":false,"failedPasswordAttempts":0,"failedPasswordAnswerAttempts":0,"lastFailedPasswordAttempt":"0001-01-01T00:00:00","comment":"A FAKE USER","isApproved":true,"lastActivityDate":"0001-01-01T00:00:00","lastPasswordChangedDate":"0001-01-01T00:00:00","lastLockedOutDate":"0001-01-01T00:00:00","type":"CouchDBProviders.User"}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby110",
+  "passwordHash": "/b2qyO2dBkyCzPo1EM43Hnvo6YE=",
+  "passwordSalt": "2VHJVQ==",
+  "fullName": "Wilby Jackson 112",
+  "email": "wilby111@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:37.9643567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:37.9643567-04:00",
+  "roles": [],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": false,
+  "failedPasswordAttempts": 0,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "0001-01-01T00:00:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName?key=%5b%22wilby110%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":22,"offset":3,"rows":[
+{"id":"57c3bdcf06287b88e9c10a304201a67b","key":["wilby110","TestApp"],"value":{"_id":"57c3bdcf06287b88e9c10a304201a67b","_rev":"1-bae310a888ed3d57792da7ce972dab6e","attachments":{},"applicationName":"TestApp","username":"wilby110","passwordHash":"/b2qyO2dBkyCzPo1EM43Hnvo6YE=","passwordSalt":"2VHJVQ==","fullName":"Wilby Jackson 112","email":"wilby111@wcjj.net","dateCreated":"2013-09-11T10:37:37.9643567-04:00","dateLastLogin":"2013-09-11T10:37:37.9643567-04:00","roles":[],"passwordQuestion":"A QUESTION","passwordAnswer":"A ANSWER","isLockedOut":false,"failedPasswordAttempts":0,"failedPasswordAnswerAttempts":0,"lastFailedPasswordAttempt":"0001-01-01T00:00:00","comment":"A FAKE USER","isApproved":true,"lastActivityDate":"0001-01-01T00:00:00","lastPasswordChangedDate":"0001-01-01T00:00:00","lastLockedOutDate":"0001-01-01T00:00:00","type":"CouchDBProviders.User"}}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: PUT Uri: http://localhost:5984/membershiptest/57c3bdcf06287b88e9c10a304201a67b
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby110",
+  "passwordHash": "/b2qyO2dBkyCzPo1EM43Hnvo6YE=",
+  "passwordSalt": "2VHJVQ==",
+  "fullName": "Wilby Jackson 112",
+  "email": "wilby111@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:37.9643567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:37.9853567-04:00",
+  "roles": [],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": false,
+  "failedPasswordAttempts": 0,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "0001-01-01T00:00:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "_id": "57c3bdcf06287b88e9c10a304201a67b",
+  "_rev": "1-bae310a888ed3d57792da7ce972dab6e",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName?key=%5b%22wilby110%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":22,"offset":3,"rows":[
+{"id":"57c3bdcf06287b88e9c10a304201a67b","key":["wilby110","TestApp"],"value":{"_id":"57c3bdcf06287b88e9c10a304201a67b","_rev":"2-07520cb4a4061e44c845fcabfae84513","attachments":{},"applicationName":"TestApp","username":"wilby110","passwordHash":"/b2qyO2dBkyCzPo1EM43Hnvo6YE=","passwordSalt":"2VHJVQ==","fullName":"Wilby Jackson 112","email":"wilby111@wcjj.net","dateCreated":"2013-09-11T10:37:37.9643567-04:00","dateLastLogin":"2013-09-11T10:37:37.9853567-04:00","roles":[],"passwordQuestion":"A QUESTION","passwordAnswer":"A ANSWER","isLockedOut":false,"failedPasswordAttempts":0,"failedPasswordAnswerAttempts":0,"lastFailedPasswordAttempt":"0001-01-01T00:00:00","comment":"A FAKE USER","isApproved":true,"lastActivityDate":"0001-01-01T00:00:00","lastPasswordChangedDate":"0001-01-01T00:00:00","lastLockedOutDate":"0001-01-01T00:00:00","type":"CouchDBProviders.User"}}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: PUT Uri: http://localhost:5984/membershiptest/57c3bdcf06287b88e9c10a304201a67b
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby110",
+  "passwordHash": "/b2qyO2dBkyCzPo1EM43Hnvo6YE=",
+  "passwordSalt": "2VHJVQ==",
+  "fullName": "Wilby Jackson 112",
+  "email": "wilby111@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:37.9643567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:37.9853567-04:00",
+  "roles": [],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": false,
+  "failedPasswordAttempts": 1,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "2013-09-11T10:37:38.0013567-04:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "_id": "57c3bdcf06287b88e9c10a304201a67b",
+  "_rev": "2-07520cb4a4061e44c845fcabfae84513",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName?key=%5b%22wilby110%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":22,"offset":3,"rows":[
+{"id":"57c3bdcf06287b88e9c10a304201a67b","key":["wilby110","TestApp"],"value":{"_id":"57c3bdcf06287b88e9c10a304201a67b","_rev":"3-8f8f1934eac45372baea86d3be550deb","attachments":{},"applicationName":"TestApp","username":"wilby110","passwordHash":"/b2qyO2dBkyCzPo1EM43Hnvo6YE=","passwordSalt":"2VHJVQ==","fullName":"Wilby Jackson 112","email":"wilby111@wcjj.net","dateCreated":"2013-09-11T10:37:37.9643567-04:00","dateLastLogin":"2013-09-11T10:37:37.9853567-04:00","roles":[],"passwordQuestion":"A QUESTION","passwordAnswer":"A ANSWER","isLockedOut":false,"failedPasswordAttempts":1,"failedPasswordAnswerAttempts":0,"lastFailedPasswordAttempt":"2013-09-11T10:37:38.0013567-04:00","comment":"A FAKE USER","isApproved":true,"lastActivityDate":"0001-01-01T00:00:00","lastPasswordChangedDate":"0001-01-01T00:00:00","lastLockedOutDate":"0001-01-01T00:00:00","type":"CouchDBProviders.User"}}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: PUT Uri: http://localhost:5984/membershiptest/57c3bdcf06287b88e9c10a304201a67b
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby110",
+  "passwordHash": "/b2qyO2dBkyCzPo1EM43Hnvo6YE=",
+  "passwordSalt": "2VHJVQ==",
+  "fullName": "Wilby Jackson 112",
+  "email": "wilby111@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:37.9643567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:37.9853567-04:00",
+  "roles": [],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": false,
+  "failedPasswordAttempts": 2,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "2013-09-11T10:37:38.0193567-04:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "_id": "57c3bdcf06287b88e9c10a304201a67b",
+  "_rev": "3-8f8f1934eac45372baea86d3be550deb",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName?key=%5b%22wilby110%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":22,"offset":3,"rows":[
+{"id":"57c3bdcf06287b88e9c10a304201a67b","key":["wilby110","TestApp"],"value":{"_id":"57c3bdcf06287b88e9c10a304201a67b","_rev":"4-011c4251f4b790ddae547e898f39699d","attachments":{},"applicationName":"TestApp","username":"wilby110","passwordHash":"/b2qyO2dBkyCzPo1EM43Hnvo6YE=","passwordSalt":"2VHJVQ==","fullName":"Wilby Jackson 112","email":"wilby111@wcjj.net","dateCreated":"2013-09-11T10:37:37.9643567-04:00","dateLastLogin":"2013-09-11T10:37:37.9853567-04:00","roles":[],"passwordQuestion":"A QUESTION","passwordAnswer":"A ANSWER","isLockedOut":false,"failedPasswordAttempts":2,"failedPasswordAnswerAttempts":0,"lastFailedPasswordAttempt":"2013-09-11T10:37:38.0193567-04:00","comment":"A FAKE USER","isApproved":true,"lastActivityDate":"0001-01-01T00:00:00","lastPasswordChangedDate":"0001-01-01T00:00:00","lastLockedOutDate":"0001-01-01T00:00:00","type":"CouchDBProviders.User"}}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: PUT Uri: http://localhost:5984/membershiptest/57c3bdcf06287b88e9c10a304201a67b
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby110",
+  "passwordHash": "/b2qyO2dBkyCzPo1EM43Hnvo6YE=",
+  "passwordSalt": "2VHJVQ==",
+  "fullName": "Wilby Jackson 112",
+  "email": "wilby111@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:37.9643567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:37.9853567-04:00",
+  "roles": [],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": false,
+  "failedPasswordAttempts": 3,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "2013-09-11T10:37:38.0353567-04:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "_id": "57c3bdcf06287b88e9c10a304201a67b",
+  "_rev": "4-011c4251f4b790ddae547e898f39699d",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName?key=%5b%22wilby110%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":22,"offset":3,"rows":[
+{"id":"57c3bdcf06287b88e9c10a304201a67b","key":["wilby110","TestApp"],"value":{"_id":"57c3bdcf06287b88e9c10a304201a67b","_rev":"5-d83461ec442f7005d7fa46f8fc9359e8","attachments":{},"applicationName":"TestApp","username":"wilby110","passwordHash":"/b2qyO2dBkyCzPo1EM43Hnvo6YE=","passwordSalt":"2VHJVQ==","fullName":"Wilby Jackson 112","email":"wilby111@wcjj.net","dateCreated":"2013-09-11T10:37:37.9643567-04:00","dateLastLogin":"2013-09-11T10:37:37.9853567-04:00","roles":[],"passwordQuestion":"A QUESTION","passwordAnswer":"A ANSWER","isLockedOut":false,"failedPasswordAttempts":3,"failedPasswordAnswerAttempts":0,"lastFailedPasswordAttempt":"2013-09-11T10:37:38.0353567-04:00","comment":"A FAKE USER","isApproved":true,"lastActivityDate":"0001-01-01T00:00:00","lastPasswordChangedDate":"0001-01-01T00:00:00","lastLockedOutDate":"0001-01-01T00:00:00","type":"CouchDBProviders.User"}}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: PUT Uri: http://localhost:5984/membershiptest/57c3bdcf06287b88e9c10a304201a67b
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby110",
+  "passwordHash": "/b2qyO2dBkyCzPo1EM43Hnvo6YE=",
+  "passwordSalt": "2VHJVQ==",
+  "fullName": "Wilby Jackson 112",
+  "email": "wilby111@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:37.9643567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:37.9853567-04:00",
+  "roles": [],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": false,
+  "failedPasswordAttempts": 4,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "2013-09-11T10:37:38.0513567-04:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "_id": "57c3bdcf06287b88e9c10a304201a67b",
+  "_rev": "5-d83461ec442f7005d7fa46f8fc9359e8",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName?key=%5b%22wilby110%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":22,"offset":3,"rows":[
+{"id":"57c3bdcf06287b88e9c10a304201a67b","key":["wilby110","TestApp"],"value":{"_id":"57c3bdcf06287b88e9c10a304201a67b","_rev":"6-af94d74e110bb80f0da0ee7e1f17d96c","attachments":{},"applicationName":"TestApp","username":"wilby110","passwordHash":"/b2qyO2dBkyCzPo1EM43Hnvo6YE=","passwordSalt":"2VHJVQ==","fullName":"Wilby Jackson 112","email":"wilby111@wcjj.net","dateCreated":"2013-09-11T10:37:37.9643567-04:00","dateLastLogin":"2013-09-11T10:37:37.9853567-04:00","roles":[],"passwordQuestion":"A QUESTION","passwordAnswer":"A ANSWER","isLockedOut":false,"failedPasswordAttempts":4,"failedPasswordAnswerAttempts":0,"lastFailedPasswordAttempt":"2013-09-11T10:37:38.0513567-04:00","comment":"A FAKE USER","isApproved":true,"lastActivityDate":"0001-01-01T00:00:00","lastPasswordChangedDate":"0001-01-01T00:00:00","lastLockedOutDate":"0001-01-01T00:00:00","type":"CouchDBProviders.User"}}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: PUT Uri: http://localhost:5984/membershiptest/57c3bdcf06287b88e9c10a304201a67b
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby110",
+  "passwordHash": "/b2qyO2dBkyCzPo1EM43Hnvo6YE=",
+  "passwordSalt": "2VHJVQ==",
+  "fullName": "Wilby Jackson 112",
+  "email": "wilby111@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:37.9643567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:37.9853567-04:00",
+  "roles": [],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": true,
+  "failedPasswordAttempts": 5,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "2013-09-11T10:37:38.0673567-04:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "_id": "57c3bdcf06287b88e9c10a304201a67b",
+  "_rev": "6-af94d74e110bb80f0da0ee7e1f17d96c",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName?key=%5b%22wilby110%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":22,"offset":3,"rows":[
+{"id":"57c3bdcf06287b88e9c10a304201a67b","key":["wilby110","TestApp"],"value":{"_id":"57c3bdcf06287b88e9c10a304201a67b","_rev":"7-dcf2571c7a1e21206078f0b9f8d3c509","attachments":{},"applicationName":"TestApp","username":"wilby110","passwordHash":"/b2qyO2dBkyCzPo1EM43Hnvo6YE=","passwordSalt":"2VHJVQ==","fullName":"Wilby Jackson 112","email":"wilby111@wcjj.net","dateCreated":"2013-09-11T10:37:37.9643567-04:00","dateLastLogin":"2013-09-11T10:37:37.9853567-04:00","roles":[],"passwordQuestion":"A QUESTION","passwordAnswer":"A ANSWER","isLockedOut":true,"failedPasswordAttempts":5,"failedPasswordAnswerAttempts":0,"lastFailedPasswordAttempt":"2013-09-11T10:37:38.0673567-04:00","comment":"A FAKE USER","isApproved":true,"lastActivityDate":"0001-01-01T00:00:00","lastPasswordChangedDate":"0001-01-01T00:00:00","lastLockedOutDate":"0001-01-01T00:00:00","type":"CouchDBProviders.User"}}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: PUT Uri: http://localhost:5984/membershiptest/57c3bdcf06287b88e9c10a304201a67b
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby110",
+  "passwordHash": "/b2qyO2dBkyCzPo1EM43Hnvo6YE=",
+  "passwordSalt": "2VHJVQ==",
+  "fullName": "Wilby Jackson 112",
+  "email": "wilby111@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:37.9643567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:37.9853567-04:00",
+  "roles": [],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": true,
+  "failedPasswordAttempts": 6,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "2013-09-11T10:37:38.0833567-04:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "_id": "57c3bdcf06287b88e9c10a304201a67b",
+  "_rev": "7-dcf2571c7a1e21206078f0b9f8d3c509",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetDocument Uri: 
+INFO TestRunnerThread Wcjj.CouchClient.Client - Document Retrieved: 
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetDocument<T> Type: CouchDBProviders.User Json: {"_id":"57c3bdcf06287b88e9c10a304201a67b","_rev":"8-ca455c4c00a340cdb1706251e5854321","attachments":{},"applicationName":"TestApp","username":"wilby110","passwordHash":"/b2qyO2dBkyCzPo1EM43Hnvo6YE=","passwordSalt":"2VHJVQ==","fullName":"Wilby Jackson 112","email":"wilby111@wcjj.net","dateCreated":"2013-09-11T10:37:37.9643567-04:00","dateLastLogin":"2013-09-11T10:37:37.9853567-04:00","roles":[],"passwordQuestion":"A QUESTION","passwordAnswer":"A ANSWER","isLockedOut":true,"failedPasswordAttempts":6,"failedPasswordAnswerAttempts":0,"lastFailedPasswordAttempt":"2013-09-11T10:37:38.0833567-04:00","comment":"A FAKE USER","isApproved":true,"lastActivityDate":"0001-01-01T00:00:00","lastPasswordChangedDate":"0001-01-01T00:00:00","lastLockedOutDate":"0001-01-01T00:00:00","type":"CouchDBProviders.User"}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - DatabaseExists URI: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - DeleteDatabase Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - DatabaseExists URI: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - CreateDatabase Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - DocumentExists Uri: http://localhost:5984/membershiptest/_design/auth
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: Wcjj.CouchClient.CouchDesignDocument Method: PUT Uri: http://localhost:5984/membershiptest/_design/auth
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "views": {
+    "byUserNameAndAppName": {
+      "map": "function(doc) { \r\n\tif(doc.type == 'CouchDBProviders.User') \r\n\t\temit([doc.username, doc.applicationName], doc) \r\n}"
+    },
+    "byUserNameAndAppNameExists": {
+      "map": "function(doc) { \r\n\tif(doc.type == 'CouchDBProviders.User') \r\n\t\temit([doc.username, doc.applicationName], true) \r\n}"
+    },
+    "byEmailAndAppName": {
+      "map": "function(doc) { \r\n\tif(doc.type == 'CouchDBProviders.User') \r\n\t\temit([doc.email, doc.applicationName], doc.id) \r\n}"
+    },
+    "allUsersForAppName": {
+      "map": "function(doc) { \r\n\tif(doc.type == 'CouchDBProviders.User') \r\n\t\temit(doc.applicationName, doc) \r\n}"
+    },
+    "userIsOnline": {
+      "map": "function(doc) { \r\n\tif(doc.type == 'CouchDBProviders.User') \r\n\t\temit([doc.lastActivityDate, doc.applicationName], 1) \r\n}",
+      "reduce": "function(keys, values, rereduce){ return sum(values); }"
+    },
+    "byEmailAndAppNameValueIsUsernameOnly": {
+      "map": "function(doc) { \r\n\tif(doc.type == 'CouchDBProviders.User') \r\n\t\temit([doc.email,doc.applicationName], doc.username) \r\n}"
+    },
+    "byRoleAndAppName": {
+      "map": "function(doc) { \r\n\tif(doc.type == 'CouchDBProviders.Role') \r\n\t\temit([doc.name, doc.applicationName], doc) \r\n}"
+    },
+    "byUserRoles": {
+      "map": "function(doc) { \r\n\tif(doc.type == 'CouchDBProviders.User') \r\n\t\tfor(var role in doc.roles)\r\n\t\t\temit([doc.roles[role], doc.username, doc.applicationName], doc.username) \r\n}"
+    },
+    "byUsersWithRoles": {
+      "map": "function(doc) { \r\n\tif(doc.type == 'CouchDBProviders.User') \r\n\t\tfor(var role in doc.roles)\r\n\t\t\temit([doc.roles[role],  doc.applicationName], doc) \r\n}"
+    },
+    "byUserNamesWithRole": {
+      "map": "function(doc) { \r\n\tif(doc.type == 'CouchDBProviders.User') \r\n\t\tfor(var role in doc.roles)\r\n\t\t\temit([doc.roles[role], doc.applicationName], doc.username) \r\n}"
+    },
+    "rolesByApplicationName": {
+      "map": "function(doc) { \r\n\tif(doc.type == 'CouchDBProviders.Role') \r\n\t\temit(doc.applicationName, doc.name) \r\n}"
+    }
+  },
+  "_id": "_design/auth",
+  "type": "Wcjj.CouchClient.CouchDesignDocument"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - DatabaseExists URI: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - DatabaseExists URI: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby113",
+  "passwordHash": "i/+VT/7gNAVaLmCCV+DdZ9/OH5w=",
+  "passwordSalt": "OtOs/A==",
+  "fullName": "Wilby Jackson 115",
+  "email": "wilby114@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:38.1873567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:38.1873567-04:00",
+  "roles": [],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": false,
+  "failedPasswordAttempts": 0,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "0001-01-01T00:00:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.Role Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "name": "ROLE116",
+  "type": "CouchDBProviders.Role"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName?keys=%5b%5b%22wilby113%22%2c%22TestApp%22%5d%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":1,"offset":0,"rows":[
+{"id":"57c3bdcf06287b88e9c10a304201a9f6","key":["wilby113","TestApp"],"value":{"_id":"57c3bdcf06287b88e9c10a304201a9f6","_rev":"1-1e0c167fe9ccb6071ee8540f07c3f4b3","attachments":{},"applicationName":"TestApp","username":"wilby113","passwordHash":"i/+VT/7gNAVaLmCCV+DdZ9/OH5w=","passwordSalt":"OtOs/A==","fullName":"Wilby Jackson 115","email":"wilby114@wcjj.net","dateCreated":"2013-09-11T10:37:38.1873567-04:00","dateLastLogin":"2013-09-11T10:37:38.1873567-04:00","roles":[],"passwordQuestion":"A QUESTION","passwordAnswer":"A ANSWER","isLockedOut":false,"failedPasswordAttempts":0,"failedPasswordAnswerAttempts":0,"lastFailedPasswordAttempt":"0001-01-01T00:00:00","comment":"A FAKE USER","isApproved":true,"lastActivityDate":"0001-01-01T00:00:00","lastPasswordChangedDate":"0001-01-01T00:00:00","lastLockedOutDate":"0001-01-01T00:00:00","type":"CouchDBProviders.User"}}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byRoleAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byRoleAndAppName?keys=%5b%5b%22ROLE116%22%2c%22TestApp%22%5d%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":1,"offset":0,"rows":[
+{"id":"57c3bdcf06287b88e9c10a304201ae26","key":["ROLE116","TestApp"],"value":{"_id":"57c3bdcf06287b88e9c10a304201ae26","_rev":"1-5941ee44e09a7d66886d79396d5e1646","attachments":{},"applicationName":"TestApp","name":"ROLE116","type":"CouchDBProviders.Role"}}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: PUT Uri: http://localhost:5984/membershiptest/57c3bdcf06287b88e9c10a304201a9f6
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby113",
+  "passwordHash": "i/+VT/7gNAVaLmCCV+DdZ9/OH5w=",
+  "passwordSalt": "OtOs/A==",
+  "fullName": "Wilby Jackson 115",
+  "email": "wilby114@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:38.1873567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:38.1873567-04:00",
+  "roles": [
+    "ROLE116"
+  ],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": false,
+  "failedPasswordAttempts": 0,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "0001-01-01T00:00:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "_id": "57c3bdcf06287b88e9c10a304201a9f6",
+  "_rev": "1-1e0c167fe9ccb6071ee8540f07c3f4b3",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetDocument Uri: 
+INFO TestRunnerThread Wcjj.CouchClient.Client - Document Retrieved: 
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetDocument<T> Type: CouchDBProviders.User Json: {"_id":"57c3bdcf06287b88e9c10a304201a9f6","_rev":"2-5b79e88a504e315b09564dceeae2f28c","attachments":{},"applicationName":"TestApp","username":"wilby113","passwordHash":"i/+VT/7gNAVaLmCCV+DdZ9/OH5w=","passwordSalt":"OtOs/A==","fullName":"Wilby Jackson 115","email":"wilby114@wcjj.net","dateCreated":"2013-09-11T10:37:38.1873567-04:00","dateLastLogin":"2013-09-11T10:37:38.1873567-04:00","roles":["ROLE116"],"passwordQuestion":"A QUESTION","passwordAnswer":"A ANSWER","isLockedOut":false,"failedPasswordAttempts":0,"failedPasswordAnswerAttempts":0,"lastFailedPasswordAttempt":"0001-01-01T00:00:00","comment":"A FAKE USER","isApproved":true,"lastActivityDate":"0001-01-01T00:00:00","lastPasswordChangedDate":"0001-01-01T00:00:00","lastLockedOutDate":"0001-01-01T00:00:00","type":"CouchDBProviders.User"}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName?keys=%5b%5b%22NON_EXISTENT_USER%22%2c%22TestApp%22%5d%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":1,"offset":0,"rows":[
+
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byRoleAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byRoleAndAppName?key=%5b%22CREATE_ROLE_TEST%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":1,"offset":0,"rows":[
+
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.Role Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "name": "CREATE_ROLE_TEST",
+  "type": "CouchDBProviders.Role"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byRoleAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byRoleAndAppName?key=%5b%22CREATE_ROLE_TEST%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":2,"offset":0,"rows":[
+{"id":"57c3bdcf06287b88e9c10a304201b610","key":["CREATE_ROLE_TEST","TestApp"],"value":{"_id":"57c3bdcf06287b88e9c10a304201b610","_rev":"1-f270fe08e1b343bb5af3b9060285fc5e","attachments":{},"applicationName":"TestApp","name":"CREATE_ROLE_TEST","type":"CouchDBProviders.Role"}}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.Role Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "name": "MYROLE",
+  "type": "CouchDBProviders.Role"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byRoleAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byRoleAndAppName?key=%5b%22MYROLE%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":3,"offset":1,"rows":[
+{"id":"57c3bdcf06287b88e9c10a304201c150","key":["MYROLE","TestApp"],"value":{"_id":"57c3bdcf06287b88e9c10a304201c150","_rev":"1-04a2ddb4e7dd4c3ff52e6d5dadfb6a0d","attachments":{},"applicationName":"TestApp","name":"MYROLE","type":"CouchDBProviders.Role"}}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.Role Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "name": "DELETE_ROLE",
+  "type": "CouchDBProviders.Role"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byRoleAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byRoleAndAppName?key=%5b%22DELETE_ROLE%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":4,"offset":1,"rows":[
+{"id":"57c3bdcf06287b88e9c10a304201cda4","key":["DELETE_ROLE","TestApp"],"value":{"_id":"57c3bdcf06287b88e9c10a304201cda4","_rev":"1-8af3386a7255a8188f4cf5a61534a70f","attachments":{},"applicationName":"TestApp","name":"DELETE_ROLE","type":"CouchDBProviders.Role"}}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byUsersWithRoles
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byUsersWithRoles?key=%5b%22DELETE_ROLE%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":1,"offset":0,"rows":[
+
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - DeleteDocument<T> Uri: http://localhost:5984/membershiptest/57c3bdcf06287b88e9c10a304201cda4?rev=1-8af3386a7255a8188f4cf5a61534a70f
+INFO TestRunnerThread Wcjj.CouchClient.Client - DeleteDocument<T> Type: CouchDBProviders.Role Method: DELETE Deleted Successfully
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetDocument Uri: 
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byRoleAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byRoleAndAppName?key=%5b%22%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":3,"offset":0,"rows":[
+
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.Role Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "name": "MY_DELETE_ROLE",
+  "type": "CouchDBProviders.Role"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby117",
+  "passwordHash": "B9LDqsYKmaMCEsfEAymnsp9D+4E=",
+  "passwordSalt": "knfP/A==",
+  "fullName": "Wilby Jackson 119",
+  "email": "wilby118@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:38.3703567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:38.3703567-04:00",
+  "roles": [
+    "MY_DELETE_ROLE"
+  ],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": false,
+  "failedPasswordAttempts": 0,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "0001-01-01T00:00:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byRoleAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byRoleAndAppName?key=%5b%22MY_DELETE_ROLE%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":4,"offset":1,"rows":[
+{"id":"57c3bdcf06287b88e9c10a304201ceda","key":["MY_DELETE_ROLE","TestApp"],"value":{"_id":"57c3bdcf06287b88e9c10a304201ceda","_rev":"1-7f7d0ca7dbc7daf93b3d1ac9fb5ec1f0","attachments":{},"applicationName":"TestApp","name":"MY_DELETE_ROLE","type":"CouchDBProviders.Role"}}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byUsersWithRoles
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byUsersWithRoles?key=%5b%22MY_DELETE_ROLE%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":2,"offset":0,"rows":[
+{"id":"57c3bdcf06287b88e9c10a304201d123","key":["MY_DELETE_ROLE","TestApp"],"value":{"_id":"57c3bdcf06287b88e9c10a304201d123","_rev":"1-d5b279c67c1f835559add51b2e0a9575","attachments":{},"applicationName":"TestApp","username":"wilby117","passwordHash":"B9LDqsYKmaMCEsfEAymnsp9D+4E=","passwordSalt":"knfP/A==","fullName":"Wilby Jackson 119","email":"wilby118@wcjj.net","dateCreated":"2013-09-11T10:37:38.3703567-04:00","dateLastLogin":"2013-09-11T10:37:38.3703567-04:00","roles":["MY_DELETE_ROLE"],"passwordQuestion":"A QUESTION","passwordAnswer":"A ANSWER","isLockedOut":false,"failedPasswordAttempts":0,"failedPasswordAnswerAttempts":0,"lastFailedPasswordAttempt":"0001-01-01T00:00:00","comment":"A FAKE USER","isApproved":true,"lastActivityDate":"0001-01-01T00:00:00","lastPasswordChangedDate":"0001-01-01T00:00:00","lastLockedOutDate":"0001-01-01T00:00:00","type":"CouchDBProviders.User"}}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.Role Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "name": "FIND_USER_IN_ROLE_ROLE",
+  "type": "CouchDBProviders.Role"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby120",
+  "passwordHash": "ddxmlP0HMD5dxpff7jIEfwEGAb8=",
+  "passwordSalt": "YmXOsw==",
+  "fullName": "Wilby Jackson 122",
+  "email": "wilby121@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:38.3983567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:38.3983567-04:00",
+  "roles": [
+    "FIND_USER_IN_ROLE_ROLE"
+  ],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": false,
+  "failedPasswordAttempts": 0,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "0001-01-01T00:00:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby123",
+  "passwordHash": "tRqCk4H9bCN3xIR4zvBA6liT5xg=",
+  "passwordSalt": "Jpq6Zg==",
+  "fullName": "Wilby Jackson 125",
+  "email": "wilby124@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:38.4013567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:38.4013567-04:00",
+  "roles": [
+    "FIND_USER_IN_ROLE_ROLE"
+  ],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": false,
+  "failedPasswordAttempts": 0,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "0001-01-01T00:00:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "FIND_USER_USERNAME",
+  "passwordHash": "LfmrYFAd/kWXE4oEoawd4Ws0dtA=",
+  "passwordSalt": "ZGW/9w==",
+  "fullName": "Wilby Jackson 128",
+  "email": "wilby127@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:38.4033567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:38.4033567-04:00",
+  "roles": [
+    "FIND_USER_IN_ROLE_ROLE"
+  ],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": false,
+  "failedPasswordAttempts": 0,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "0001-01-01T00:00:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byUserNamesWithRole
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byUserNamesWithRole?key=%5b%22FIND_USER_IN_ROLE_ROLE%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":5,"offset":0,"rows":[
+{"id":"57c3bdcf06287b88e9c10a304201e7a9","key":["FIND_USER_IN_ROLE_ROLE","TestApp"],"value":"wilby120"},
+{"id":"57c3bdcf06287b88e9c10a304201f330","key":["FIND_USER_IN_ROLE_ROLE","TestApp"],"value":"wilby123"},
+{"id":"57c3bdcf06287b88e9c10a304201f45b","key":["FIND_USER_IN_ROLE_ROLE","TestApp"],"value":"FIND_USER_USERNAME"}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byUserRoles
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byUserRoles?startkey=%5b%22FIND_USER_IN_ROLE_ROLE%22%2c%22%22%2c%22TestApp%22%5d&endkey=%5b%22FIND_USER_IN_ROLE_ROLE%22%2c%22z%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":5,"offset":0,"rows":[
+{"id":"57c3bdcf06287b88e9c10a304201f45b","key":["FIND_USER_IN_ROLE_ROLE","FIND_USER_USERNAME","TestApp"],"value":"FIND_USER_USERNAME"},
+{"id":"57c3bdcf06287b88e9c10a304201e7a9","key":["FIND_USER_IN_ROLE_ROLE","wilby120","TestApp"],"value":"wilby120"},
+{"id":"57c3bdcf06287b88e9c10a304201f330","key":["FIND_USER_IN_ROLE_ROLE","wilby123","TestApp"],"value":"wilby123"}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byUserRoles
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byUserRoles?startkey=%5b%22FIND_USER_IN_ROLE_ROLE%22%2c%22wilby%22%2c%22TestApp%22%5d&endkey=%5b%22FIND_USER_IN_ROLE_ROLE%22%2c%22wilbyz%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":5,"offset":1,"rows":[
+{"id":"57c3bdcf06287b88e9c10a304201e7a9","key":["FIND_USER_IN_ROLE_ROLE","wilby120","TestApp"],"value":"wilby120"},
+{"id":"57c3bdcf06287b88e9c10a304201f330","key":["FIND_USER_IN_ROLE_ROLE","wilby123","TestApp"],"value":"wilby123"}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.Role Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "name": "GET_ALL_ROLES_ROLE",
+  "type": "CouchDBProviders.Role"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.Role Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "name": "GET_ALL_ROLES_ROLE2",
+  "type": "CouchDBProviders.Role"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/rolesByApplicationName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/rolesByApplicationName?key=%22TestApp%22
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":7,"offset":0,"rows":[
+{"id":"57c3bdcf06287b88e9c10a304201ae26","key":"TestApp","value":"ROLE116"},
+{"id":"57c3bdcf06287b88e9c10a304201b610","key":"TestApp","value":"CREATE_ROLE_TEST"},
+{"id":"57c3bdcf06287b88e9c10a304201c150","key":"TestApp","value":"MYROLE"},
+{"id":"57c3bdcf06287b88e9c10a304201ceda","key":"TestApp","value":"MY_DELETE_ROLE"},
+{"id":"57c3bdcf06287b88e9c10a304201ddc1","key":"TestApp","value":"FIND_USER_IN_ROLE_ROLE"},
+{"id":"57c3bdcf06287b88e9c10a304201fd31","key":"TestApp","value":"GET_ALL_ROLES_ROLE"},
+{"id":"57c3bdcf06287b88e9c10a3042020449","key":"TestApp","value":"GET_ALL_ROLES_ROLE2"}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.Role Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "name": "FIND_USER_IN_ROLE_ROLE",
+  "type": "CouchDBProviders.Role"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.Role Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "name": "FIND_USER_IN_ROLE_ROLE2",
+  "type": "CouchDBProviders.Role"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby129",
+  "passwordHash": "y87Bg27gUjO5XQa/BtPbBvsA1qY=",
+  "passwordSalt": "LRZuuw==",
+  "fullName": "Wilby Jackson 131",
+  "email": "wilby130@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:38.4713567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:38.4713567-04:00",
+  "roles": [
+    "FIND_USER_IN_ROLE_ROLE",
+    "FIND_USER_IN_ROLE_ROLE2"
+  ],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": false,
+  "failedPasswordAttempts": 0,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "0001-01-01T00:00:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName?key=%5b%22wilby129%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":6,"offset":5,"rows":[
+{"id":"57c3bdcf06287b88e9c10a3042021af1","key":["wilby129","TestApp"],"value":{"_id":"57c3bdcf06287b88e9c10a3042021af1","_rev":"1-8db72f47ed58acf89e27282736cbb66c","attachments":{},"applicationName":"TestApp","username":"wilby129","passwordHash":"y87Bg27gUjO5XQa/BtPbBvsA1qY=","passwordSalt":"LRZuuw==","fullName":"Wilby Jackson 131","email":"wilby130@wcjj.net","dateCreated":"2013-09-11T10:37:38.4713567-04:00","dateLastLogin":"2013-09-11T10:37:38.4713567-04:00","roles":["FIND_USER_IN_ROLE_ROLE","FIND_USER_IN_ROLE_ROLE2"],"passwordQuestion":"A QUESTION","passwordAnswer":"A ANSWER","isLockedOut":false,"failedPasswordAttempts":0,"failedPasswordAnswerAttempts":0,"lastFailedPasswordAttempt":"0001-01-01T00:00:00","comment":"A FAKE USER","isApproved":true,"lastActivityDate":"0001-01-01T00:00:00","lastPasswordChangedDate":"0001-01-01T00:00:00","lastLockedOutDate":"0001-01-01T00:00:00","type":"CouchDBProviders.User"}}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byRoleAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byRoleAndAppName?key=%5b%22NON_EXISTENT_ROLE%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":9,"offset":8,"rows":[
+
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.Role Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "name": "GET_USERS_IN_ROLE_ROLE",
+  "type": "CouchDBProviders.Role"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby132",
+  "passwordHash": "rPyDbxyynI5HUD+jLmnFUdm7070=",
+  "passwordSalt": "DR9EHA==",
+  "fullName": "Wilby Jackson 134",
+  "email": "wilby133@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:38.5183567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:38.5183567-04:00",
+  "roles": [
+    "GET_USERS_IN_ROLE_ROLE"
+  ],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": false,
+  "failedPasswordAttempts": 0,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "0001-01-01T00:00:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby135",
+  "passwordHash": "rpbI3+TpmtJa7dDWanoQ7H0pOHo=",
+  "passwordSalt": "zt9rfw==",
+  "fullName": "Wilby Jackson 137",
+  "email": "wilby136@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:38.5233567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:38.5233567-04:00",
+  "roles": [
+    "GET_USERS_IN_ROLE_ROLE"
+  ],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": false,
+  "failedPasswordAttempts": 0,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "0001-01-01T00:00:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byRoleAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byRoleAndAppName?key=%5b%22GET_USERS_IN_ROLE_ROLE%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":10,"offset":6,"rows":[
+{"id":"57c3bdcf06287b88e9c10a304202215a","key":["GET_USERS_IN_ROLE_ROLE","TestApp"],"value":{"_id":"57c3bdcf06287b88e9c10a304202215a","_rev":"1-0dca6abc85af2b5b7860fb7945568f07","attachments":{},"applicationName":"TestApp","name":"GET_USERS_IN_ROLE_ROLE","type":"CouchDBProviders.Role"}}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byUserNamesWithRole
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byUserNamesWithRole?key=%5b%22GET_USERS_IN_ROLE_ROLE%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":9,"offset":5,"rows":[
+{"id":"57c3bdcf06287b88e9c10a3042022469","key":["GET_USERS_IN_ROLE_ROLE","TestApp"],"value":"wilby132"},
+{"id":"57c3bdcf06287b88e9c10a3042023444","key":["GET_USERS_IN_ROLE_ROLE","TestApp"],"value":"wilby135"}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.Role Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "name": "IS_USER_IN_ROLE_ROLE",
+  "type": "CouchDBProviders.Role"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby138",
+  "passwordHash": "E64qbnhes5wja5KdZyEeDBKdwOA=",
+  "passwordSalt": "/KM7Kw==",
+  "fullName": "Wilby Jackson 140",
+  "email": "wilby139@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:38.5623567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:38.5623567-04:00",
+  "roles": [
+    "IS_USER_IN_ROLE_ROLE"
+  ],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": false,
+  "failedPasswordAttempts": 0,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "0001-01-01T00:00:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byUserRoles
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byUserRoles?key=%5b%22IS_USER_IN_ROLE_ROLE%22%2c%22wilby138%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":10,"offset":7,"rows":[
+{"id":"57c3bdcf06287b88e9c10a3042024687","key":["IS_USER_IN_ROLE_ROLE","wilby138","TestApp"],"value":"wilby138"}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby141",
+  "passwordHash": "4TImLh8AUhk9R5K8zb+/7trx/qg=",
+  "passwordSalt": "WYRAuw==",
+  "fullName": "Wilby Jackson 143",
+  "email": "wilby142@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:38.5823567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:38.5823567-04:00",
+  "roles": [],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": false,
+  "failedPasswordAttempts": 0,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "0001-01-01T00:00:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byUserRoles
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byUserRoles?key=%5b%22IS_USER_IN_ROLE_ROLE%22%2c%22wilby141%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":10,"offset":8,"rows":[
+
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.Role Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "name": "REMOVE_USERS_FROM_ROLES_ROLE",
+  "type": "CouchDBProviders.Role"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.Role Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "name": "REMOVE_USERS_FROM_ROLES_ROLE2",
+  "type": "CouchDBProviders.Role"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby144",
+  "passwordHash": "/YQO47GHDZjyplsxX+doBHNXUAk=",
+  "passwordSalt": "/ozv0w==",
+  "fullName": "Wilby Jackson 146",
+  "email": "wilby145@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:38.6113567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:38.6113567-04:00",
+  "roles": [
+    "REMOVE_USERS_FROM_ROLES_ROLE",
+    "REMOVE_USERS_FROM_ROLES_ROLE2"
+  ],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": false,
+  "failedPasswordAttempts": 0,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "0001-01-01T00:00:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby147",
+  "passwordHash": "qviEtCEe5DvVBwLENk7l37U+DvA=",
+  "passwordSalt": "9rMEYQ==",
+  "fullName": "Wilby Jackson 149",
+  "email": "wilby148@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:38.6143567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:38.6143567-04:00",
+  "roles": [
+    "REMOVE_USERS_FROM_ROLES_ROLE",
+    "REMOVE_USERS_FROM_ROLES_ROLE2"
+  ],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": false,
+  "failedPasswordAttempts": 0,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "0001-01-01T00:00:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byUserNameAndAppName?keys=%5b%5b%22wilby144%22%2c%22TestApp%22%5d%2c%5b%22wilby147%22%2c%22TestApp%22%5d%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":12,"offset":10,"rows":[
+{"id":"57c3bdcf06287b88e9c10a3042026dc9","key":["wilby144","TestApp"],"value":{"_id":"57c3bdcf06287b88e9c10a3042026dc9","_rev":"1-09d55da21413c1c7f00c45d17fbf9421","attachments":{},"applicationName":"TestApp","username":"wilby144","passwordHash":"/YQO47GHDZjyplsxX+doBHNXUAk=","passwordSalt":"/ozv0w==","fullName":"Wilby Jackson 146","email":"wilby145@wcjj.net","dateCreated":"2013-09-11T10:37:38.6113567-04:00","dateLastLogin":"2013-09-11T10:37:38.6113567-04:00","roles":["REMOVE_USERS_FROM_ROLES_ROLE","REMOVE_USERS_FROM_ROLES_ROLE2"],"passwordQuestion":"A QUESTION","passwordAnswer":"A ANSWER","isLockedOut":false,"failedPasswordAttempts":0,"failedPasswordAnswerAttempts":0,"lastFailedPasswordAttempt":"0001-01-01T00:00:00","comment":"A FAKE USER","isApproved":true,"lastActivityDate":"0001-01-01T00:00:00","lastPasswordChangedDate":"0001-01-01T00:00:00","lastLockedOutDate":"0001-01-01T00:00:00","type":"CouchDBProviders.User"}},
+{"id":"57c3bdcf06287b88e9c10a3042027395","key":["wilby147","TestApp"],"value":{"_id":"57c3bdcf06287b88e9c10a3042027395","_rev":"1-4ec5ebb8e24f9aa9b3966cb78ec19205","attachments":{},"applicationName":"TestApp","username":"wilby147","passwordHash":"qviEtCEe5DvVBwLENk7l37U+DvA=","passwordSalt":"9rMEYQ==","fullName":"Wilby Jackson 149","email":"wilby148@wcjj.net","dateCreated":"2013-09-11T10:37:38.6143567-04:00","dateLastLogin":"2013-09-11T10:37:38.6143567-04:00","roles":["REMOVE_USERS_FROM_ROLES_ROLE","REMOVE_USERS_FROM_ROLES_ROLE2"],"passwordQuestion":"A QUESTION","passwordAnswer":"A ANSWER","isLockedOut":false,"failedPasswordAttempts":0,"failedPasswordAnswerAttempts":0,"lastFailedPasswordAttempt":"0001-01-01T00:00:00","comment":"A FAKE USER","isApproved":true,"lastActivityDate":"0001-01-01T00:00:00","lastPasswordChangedDate":"0001-01-01T00:00:00","lastLockedOutDate":"0001-01-01T00:00:00","type":"CouchDBProviders.User"}}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: PUT Uri: http://localhost:5984/membershiptest/57c3bdcf06287b88e9c10a3042026dc9
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby144",
+  "passwordHash": "/YQO47GHDZjyplsxX+doBHNXUAk=",
+  "passwordSalt": "/ozv0w==",
+  "fullName": "Wilby Jackson 146",
+  "email": "wilby145@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:38.6113567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:38.6113567-04:00",
+  "roles": [],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": false,
+  "failedPasswordAttempts": 0,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "0001-01-01T00:00:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "_id": "57c3bdcf06287b88e9c10a3042026dc9",
+  "_rev": "1-09d55da21413c1c7f00c45d17fbf9421",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: PUT Uri: http://localhost:5984/membershiptest/57c3bdcf06287b88e9c10a3042027395
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby147",
+  "passwordHash": "qviEtCEe5DvVBwLENk7l37U+DvA=",
+  "passwordSalt": "9rMEYQ==",
+  "fullName": "Wilby Jackson 149",
+  "email": "wilby148@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:38.6143567-04:00",
+  "dateLastLogin": "2013-09-11T10:37:38.6143567-04:00",
+  "roles": [],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": false,
+  "failedPasswordAttempts": 0,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "0001-01-01T00:00:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "_id": "57c3bdcf06287b88e9c10a3042027395",
+  "_rev": "1-4ec5ebb8e24f9aa9b3966cb78ec19205",
+  "type": "CouchDBProviders.User"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetDocument Uri: 
+INFO TestRunnerThread Wcjj.CouchClient.Client - Document Retrieved: 
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetDocument<T> Type: CouchDBProviders.User Json: {"_id":"57c3bdcf06287b88e9c10a3042026dc9","_rev":"2-b887d099c8f8a12254852085a6f4b375","attachments":{},"applicationName":"TestApp","username":"wilby144","passwordHash":"/YQO47GHDZjyplsxX+doBHNXUAk=","passwordSalt":"/ozv0w==","fullName":"Wilby Jackson 146","email":"wilby145@wcjj.net","dateCreated":"2013-09-11T10:37:38.6113567-04:00","dateLastLogin":"2013-09-11T10:37:38.6113567-04:00","roles":[],"passwordQuestion":"A QUESTION","passwordAnswer":"A ANSWER","isLockedOut":false,"failedPasswordAttempts":0,"failedPasswordAnswerAttempts":0,"lastFailedPasswordAttempt":"0001-01-01T00:00:00","comment":"A FAKE USER","isApproved":true,"lastActivityDate":"0001-01-01T00:00:00","lastPasswordChangedDate":"0001-01-01T00:00:00","lastLockedOutDate":"0001-01-01T00:00:00","type":"CouchDBProviders.User"}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetDocument Uri: 
+INFO TestRunnerThread Wcjj.CouchClient.Client - Document Retrieved: 
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetDocument<T> Type: CouchDBProviders.User Json: {"_id":"57c3bdcf06287b88e9c10a3042027395","_rev":"2-436cbad11f41574c9711325a40643482","attachments":{},"applicationName":"TestApp","username":"wilby147","passwordHash":"qviEtCEe5DvVBwLENk7l37U+DvA=","passwordSalt":"9rMEYQ==","fullName":"Wilby Jackson 149","email":"wilby148@wcjj.net","dateCreated":"2013-09-11T10:37:38.6143567-04:00","dateLastLogin":"2013-09-11T10:37:38.6143567-04:00","roles":[],"passwordQuestion":"A QUESTION","passwordAnswer":"A ANSWER","isLockedOut":false,"failedPasswordAttempts":0,"failedPasswordAnswerAttempts":0,"lastFailedPasswordAttempt":"0001-01-01T00:00:00","comment":"A FAKE USER","isApproved":true,"lastActivityDate":"0001-01-01T00:00:00","lastPasswordChangedDate":"0001-01-01T00:00:00","lastLockedOutDate":"0001-01-01T00:00:00","type":"CouchDBProviders.User"}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byRoleAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byRoleAndAppName?key=%5b%22NON_EXISTENT_ROLE%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":13,"offset":10,"rows":[
+
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.Role Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "name": "ROLE_EXISTS_ROLE",
+  "type": "CouchDBProviders.Role"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Uri: http://localhost:5984/membershiptest/_design/auth/_view/byRoleAndAppName
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> http://localhost:5984/membershiptest/_design/auth/_view/byRoleAndAppName?key=%5b%22ROLE_EXISTS_ROLE%22%2c%22TestApp%22%5d
+INFO TestRunnerThread Wcjj.CouchClient.Client - GetView<TValue, UDocument> Json: {"total_rows":14,"offset":12,"rows":[
+{"id":"57c3bdcf06287b88e9c10a3042027e69","key":["ROLE_EXISTS_ROLE","TestApp"],"value":{"_id":"57c3bdcf06287b88e9c10a3042027e69","_rev":"1-bc8a689ae0619713d5b496b38af9a1bc","attachments":{},"applicationName":"TestApp","name":"ROLE_EXISTS_ROLE","type":"CouchDBProviders.Role"}}
+]}
+
+INFO TestRunnerThread Wcjj.CouchClient.Client - DatabaseExists URI: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - DeleteDatabase Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - DatabaseExists URI: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - CreateDatabase Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - DocumentExists Uri: http://localhost:5984/membershiptest/_design/auth
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: Wcjj.CouchClient.CouchDesignDocument Method: PUT Uri: http://localhost:5984/membershiptest/_design/auth
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "views": {
+    "byUserNameAndAppName": {
+      "map": "function(doc) { \r\n\tif(doc.type == 'CouchDBProviders.User') \r\n\t\temit([doc.username, doc.applicationName], doc) \r\n}"
+    },
+    "byUserNameAndAppNameExists": {
+      "map": "function(doc) { \r\n\tif(doc.type == 'CouchDBProviders.User') \r\n\t\temit([doc.username, doc.applicationName], true) \r\n}"
+    },
+    "byEmailAndAppName": {
+      "map": "function(doc) { \r\n\tif(doc.type == 'CouchDBProviders.User') \r\n\t\temit([doc.email, doc.applicationName], doc.id) \r\n}"
+    },
+    "allUsersForAppName": {
+      "map": "function(doc) { \r\n\tif(doc.type == 'CouchDBProviders.User') \r\n\t\temit(doc.applicationName, doc) \r\n}"
+    },
+    "userIsOnline": {
+      "map": "function(doc) { \r\n\tif(doc.type == 'CouchDBProviders.User') \r\n\t\temit([doc.lastActivityDate, doc.applicationName], 1) \r\n}",
+      "reduce": "function(keys, values, rereduce){ return sum(values); }"
+    },
+    "byEmailAndAppNameValueIsUsernameOnly": {
+      "map": "function(doc) { \r\n\tif(doc.type == 'CouchDBProviders.User') \r\n\t\temit([doc.email,doc.applicationName], doc.username) \r\n}"
+    },
+    "byRoleAndAppName": {
+      "map": "function(doc) { \r\n\tif(doc.type == 'CouchDBProviders.Role') \r\n\t\temit([doc.name, doc.applicationName], doc) \r\n}"
+    },
+    "byUserRoles": {
+      "map": "function(doc) { \r\n\tif(doc.type == 'CouchDBProviders.User') \r\n\t\tfor(var role in doc.roles)\r\n\t\t\temit([doc.roles[role], doc.username, doc.applicationName], doc.username) \r\n}"
+    },
+    "byUsersWithRoles": {
+      "map": "function(doc) { \r\n\tif(doc.type == 'CouchDBProviders.User') \r\n\t\tfor(var role in doc.roles)\r\n\t\t\temit([doc.roles[role],  doc.applicationName], doc) \r\n}"
+    },
+    "byUserNamesWithRole": {
+      "map": "function(doc) { \r\n\tif(doc.type == 'CouchDBProviders.User') \r\n\t\tfor(var role in doc.roles)\r\n\t\t\temit([doc.roles[role], doc.applicationName], doc.username) \r\n}"
+    },
+    "rolesByApplicationName": {
+      "map": "function(doc) { \r\n\tif(doc.type == 'CouchDBProviders.Role') \r\n\t\temit(doc.applicationName, doc.name) \r\n}"
+    }
+  },
+  "_id": "_design/auth",
+  "type": "Wcjj.CouchClient.CouchDesignDocument"
+}
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document Stored Ok
+INFO TestRunnerThread Wcjj.CouchClient.Client - DatabaseExists URI: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - DatabaseExists URI: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> T: CouchDBProviders.User Method: POST Uri: http://localhost:5984/membershiptest
+INFO TestRunnerThread Wcjj.CouchClient.Client - SaveDocument<T> Uploaded Document as String: {
+  "attachments": {},
+  "applicationName": "TestApp",
+  "username": "wilby1",
+  "passwordHash": "UeMTmqd4UMeDgT+3MFeCYp+D8ZQ=",
+  "passwordSalt": "BzYKVg==",
+  "fullName": "Wilby Jackson 3",
+  "email": "wilby2@wcjj.net",
+  "dateCreated": "2013-09-11T10:37:54.2448918-04:00",
+  "dateLastLogin": "2013-09-11T10:37:54.2448918-04:00",
+  "roles": [],
+  "passwordQuestion": "A QUESTION",
+  "passwordAnswer": "A ANSWER",
+  "isLockedOut": false,
+  "failedPasswordAttempts": 0,
+  "failedPasswordAnswerAttempts": 0,
+  "lastFailedPasswordAttempt": "0001-01-01T00:00:00",
+  "comment": "A FAKE USER",
+  "isApproved": true,
+  "lastActivityDate": "0001-01-01T00:00:00",
+  "lastPasswordChangedDate": "0001-01-01T00:00:00",
+  "lastLockedOutDate": "0001-01-01T00:00:00",
+  "type": "CouchDBProviders.User"
+}

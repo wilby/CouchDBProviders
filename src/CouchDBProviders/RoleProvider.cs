@@ -116,12 +116,7 @@ namespace CouchDBProviders
             if (roleName == null)
                 throw new ArgumentNullException("roleName");
 
-            var roleView = _client.GetView<Role, CouchDocument>(
-                        CouchViews.DESIGN_DOC_AUTH,
-                        CouchViews.ROLEVIEW_BY_ROLE_NAME_AND_APPNAME,
-                        new NameValueCollection() { { "key", string.Format(_twoStringKeyViewFormatString, roleName, ApplicationName) } });
-
-            if (roleView.HasRows)
+            if (RoleExists(roleName))
                 throw new ProviderException(string.Format("The role: {0} for application: {1} already exists.", roleName, ApplicationName));
 
             var role = new Role(roleName, null) { ApplicationName = ApplicationName };
@@ -342,7 +337,6 @@ namespace CouchDBProviders
 
             if (roleName == "")
                 throw new ArgumentException();
-
 
             var roleView = _client.GetView<Role, CouchDocument>(
                         CouchViews.DESIGN_DOC_AUTH,

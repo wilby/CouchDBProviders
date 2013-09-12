@@ -9,7 +9,6 @@ using Microsoft.Practices.ServiceLocation;
 using System.Reflection;
 using System.IO;
 using Castle.Windsor;
-using Microsoft.Practices.ServiceLocation;
 using Castle.MicroKernel.Registration;
 
 
@@ -52,7 +51,7 @@ namespace CouchDBProviders.Web
 
 			// MVC components
 			ControllerBuilder.Current.SetControllerFactory(new WindsorControllerFactory(Container));
-			Container.Register(AllTypes
+			Container.Register(Classes
 				.FromAssembly(Assembly.GetExecutingAssembly())
 				.BasedOn<IController>().LifestyleTransient()
                 

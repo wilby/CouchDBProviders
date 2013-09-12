@@ -18,7 +18,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;WORK</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -53,8 +53,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Wcjj.CouchClient, Version=0.1.0.0, Culture=neutral, PublicKeyToken=fbe942089f8f9646, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Wcjj.CouchClient">
       <HintPath>..\..\..\Wcjj.CouchClient\src\Wcjj.CouchClient\bin\Debug\Wcjj.CouchClient.dll</HintPath>
     </Reference>
   </ItemGroup>

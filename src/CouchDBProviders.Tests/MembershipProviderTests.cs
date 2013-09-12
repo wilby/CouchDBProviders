@@ -48,7 +48,6 @@ namespace CouchDBProviders.Tests
             _provider = null;
 
         }
-
       
         [Test]
         public void Test_GetUser_by_username()
