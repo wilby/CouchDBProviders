@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>CouchDBProviders</id>
+	<title>CouchDBProviders (Membership and Role Providers)</title>
+    <version>4.0.3</version>
+    <authors>Wilby C. Jackson Jr.</authors>
+    <owners>Wilby C. Jackson Jr.</owners>
+    <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
+    <projectUrl>https://github.com/wilby/CouchDBProviders</projectUrl>    
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A CouchDB Membership and Role Provider for Asp.Net</description>	
+    <releaseNotes>		
+		** This is the only working nuget package version of CouchDBProviders to date. **
+		- Fixed the nuget package where after adding a files element dll was not included.
+		- Changed the readme.txt example configurations to reflect better defaults.
+		- Changed log4net refernce to 1.2.11 explicitly 1.2.12 or 2.0.1 changes the signing key which is a breaking change
+		- Added a transform file to include a default log4net configuration section
+
+		If you downloaded a 4.0.1 or 4.0.2 version of this software it will not work properly, please update to 4.0.3
+    </releaseNotes>
+    <copyright>Copyright Wilby C. Jackson Jr. 2013</copyright>
+    <tags>CouchDB Memberhip Role Provider NoSQL</tags>    
+    <dependencies>
+       <group targetFramework="net40">
+			<dependency id="log4net" version="[2.0.0]"/>			
+			<dependency id="Newtonsoft.Json" version="4.5.11"/>			
+			<dependency id="ValueInjecter" version="2.3"/>			
+			<dependency id="Wcjj.CouchClient" version="4.0.3"/>	
+		</group>
+		<group targetFramework="net45">
+			<dependency id="log4net" version="[2.0.0]"/>			
+			<dependency id="Newtonsoft.Json" version="4.5.11"/>			
+			<dependency id="ValueInjecter" version="2.3"/>				
+			<dependency id="Wcjj.CouchClient" version="4.0.3"/>				
+		</group>
+    </dependencies>
+  </metadata>
+	<files>
+		<file src="readme.txt" target="" />
+		<file src="..\src\CouchDBProviders\bin\Release\CouchDBProviders.dll" target="lib\net40" />
+		<file src="..\src\CouchDBProviders\bin\Release\CouchDBProviders.dll" target="lib\net45" />
+		<file src="content\web.config.transform" target="content" />
+	</files>
+</package>

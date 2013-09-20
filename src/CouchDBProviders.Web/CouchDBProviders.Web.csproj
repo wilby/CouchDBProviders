@@ -169,12 +169,6 @@
   <ItemGroup>
     <Content Include="Views\Account\ResetPasswordQuestionAndAnswer.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CouchDBProviders\CouchDBProviders.csproj">
-      <Project>{eb126aed-b75c-416d-ba83-8a6efd1fc687}</Project>
-      <Name>CouchDBProviders</Name>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -197,7 +191,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>10549</DevelopmentServerPort>
+          <DevelopmentServerPort>21460</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
